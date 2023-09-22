@@ -1,4 +1,5 @@
-<!DOCTYPE html><!doctype html>
+<!DOCTYPE html>
+
 
 <html lang="en">
 <style>
@@ -7,6 +8,57 @@
     font-family: 'Nanum Gothic', sans-serif;}
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css" rel="stylesheet">
 </style>
+<style>
+        .input-box{
+                position:relative;
+                margin:10px 0;
+            }
+            .input-box > input{
+                background:transparent;
+                border:none;
+                border-bottom: solid 1px #ccc;
+                padding:20px 0px 5px 0px;
+                font-size:14pt;
+                width:100%;
+            }
+            input::placeholder{
+                color:transparent;
+            }
+            input:placeholder-shown + label{
+                color:#aaa;
+                font-size:10pt;
+                top:17px;
+
+            }
+            input:focus + label, label{
+                color:#000000;
+                font-size:3pt;
+                pointer-events: none;
+                position: absolute;
+                left:0px;
+                top:0px;
+                transition: all 0.2s ease ;
+                -webkit-transition: all 0.2s ease;
+                -moz-transition: all 0.2s ease;
+                -o-transition: all 0.2s ease;
+            }
+
+            input:focus, input:not(:placeholder-shown){
+                border-bottom: solid 1px #000000;
+                outline:none;
+            }
+            input[type=submit]{
+                background-color: #000000;
+                border:none;
+                color:white;
+                border-radius: 5px;
+                width:100%;
+                height:35px;
+                font-size: 14pt;
+                margin-top:100px;
+            }
+
+    </style>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,39 +67,102 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet"
           integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+     <!--Jquery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <title>로그인</title>
+
 </head>
-<body style="background: #FAFAFA">
+<body style="background: #FAFAFA; font-family: 'Nanum Gothic'">
+<!-- 내비게이션 바 -->
+<div style="margin-top: 30px; display: flex">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="font-weight: bolder;font-size: 40px; margin-left: 110px">OFER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" style="margin-left: 975px;font-size: 18px">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">STYLE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">마이페이지</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+
+
 <div style="display: flex;flex-direction: column; align-items:center; width: 100%; font-family: NanumBarunGothic">
-    <div style="padding-bottom:31px;text-align: center ;border: solid 1px rgba(219,219,219,1); width: 300px; height: 450px; margin-top: 30px; background: white;padding: 20px">
-        <div style="text-align: center;padding-left:30px; padding-right:30px;padding-bottom:20px;padding-top:10px;font-family: 'Nanum Gothic';font-weight:600;font-size: xxx-large">OFER</div>
-        <div style="font-weight: bold; color: gray;padding: 20px "> 친구들의 사진과 동영상을 보려면 가입하세요.</div>
+    <div style="padding-bottom:30px;text-align: center ;border: solid 1px rgba(219,219,219,1); width: 450px; height: 440px; margin-top: 30px; background: white;padding: 20px">
+        <div style="text-align: center;padding-left:30px; padding-right:30px;padding-bottom:20px;padding-top:20px;font-family: 'Nanum Gothic';font-weight:600;font-size: xxx-large">OFER</div>
+        <div style="font-weight: bold; color: grey;padding-bottom: 30px; padding-left: 20px;padding-right: 20px "> 사진을 공유하려면 가입하세요 </div>
 
         <!-- 이메일 주소 입력받기 -->
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" style="font-size: 14px;height: 24px" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput" style="font-size: 14px; padding:8px 10px;">이메일 주소</label>
-        </div>
+         <div class="input-box">
+                <input id="input_email" type="text" name="username" placeholder="아이디">
+                <label for="input_email">이메일주소</label>
+            </div>
 
 
         <!-- 패스워드 입력받기 -->
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" style="font-size: 14px; height : 24px" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput" style="font-size: 14px; padding:8px 10px;">비밀번호</label>
+        <div class="input-box" style="margin-top: 20px">
+                <input id="input_password" type="password" name="password" placeholder="비밀번호">
+                <label for="input_password">비밀번호</label>
+            </div>
 
         <!-- 로그인버튼 -->
-        <button class="btn btn-primary" style="width: 100% ; margin-top: 30px;margin-bottom: 30px">로그인</button>
-
+            <button type="button" class="btn btn-outline-dark" style="width: 70%; margin-top: 30px;font-weight: bold" id="login_button">로그인
+                 </button>
     </div>
-
 
         <!-- 가입하기 박스 -->
         <div style="padding-bottom:30px;text-align: center ;border: solid 1px rgba(219,219,219,1); width: 300px; height: 70px; margin-top: 30px; background: white ;font-family: NanumBarunGothicOTF;font-size: 13px">
             <div style="margin-top: 23px">계정이 없으신가요? <a href="join">가입하기</a></div>
         </div>
     </div>
-</div>
 
+<script>
+    <!-- 값 제이쿼리로 넘기기-->
+    $('#login_button').on('click',()=>{
+        console.log('클릭했다.');
+        let email = $('#input_email').val();
+        let password = $('#input_password').val();
+        console.log('이멜 :' + email +  ', 비밀번호 :'  +  password);
+
+        $.ajax({
+            url: "/user/login",
+            data: {
+                email : email,
+                password : password
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+                alert("로그인 성공");
+                location.replace('/main');
+
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+            }
+        });
+
+
+
+    });
+</script>
 
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
