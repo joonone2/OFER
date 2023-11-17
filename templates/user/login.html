@@ -131,12 +131,10 @@
     </div>
 
 <script>
-    <!-- 값 제이쿼리로 넘기기-->
-    $('#login_button').on('click',()=>{
-        console.log('클릭했다.');
+    $('#login_button').click(function () {
+
         let email = $('#input_email').val();
         let password = $('#input_password').val();
-        console.log('이멜 :' + email +  ', 비밀번호 :'  +  password);
 
         $.ajax({
             url: "/user/login",
@@ -158,9 +156,6 @@
                 console.log("완료");
             }
         });
-
-
-
     });
 </script>
 

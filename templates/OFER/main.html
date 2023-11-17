@@ -1,48 +1,1867 @@
 <!DOCTYPE html>
-<!doctype html>
-<html lang="ar" dir="rtl">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+    xmlns:sec="http://www.w3.org/1999/xhtml">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
-
-      <!--Jquery -->
-      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-    <title>مرحبًا بالعالم!</title>
-  </head>
-  <body>
-  <div>
-      {% for feed in feeds %}
-          <p>{{ feed.content }}</p>
-          <p>{{ feed.user_id }}</p>
-          <p>{{ feed.like_count }}</p>
-      {% endfor %}
-
-  </div>
-    <h1>مرحبًا بالعالم!</h1>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
-<html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>STYLE | ShoeKream</title>
+    <link data-n-head="ssr" rel="icon" type="image/x-icon" href="https://kream.co.kr/favicon.ico">
+
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!--axios cdn -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="../../css/social/style.css">
+
+    <!-- <link rel="stylesheet" href="../../css/social/profile.css"> -->
+
+
+
+
 </head>
+<style>
+    @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+    .ht_text{
+    margin-left: 24px;
+}
+
+#__layout{
+    opacity: 1;
+}
+
+.wrap{
+    position: relative;
+    padding-top: 100px;
+}
+
+#header{
+    box-shadow: 0 0 0 0
+    transparent!important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #fff;
+}
+
+#header, .lg{
+    min-height: 100px;
+}
+
+.social_header{
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    padding-bottom: 16px;
+    background-color: #fff;
+}
+
+.title_user{
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.profile_img_box{
+    overflow: hidden;
+    position: relative;
+    margin-right: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+}
+
+.profile_img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lg .content{
+    margin-top: 55px;
+}
+
+.content{
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 0 0 200px;
+}
+
+.social_user_area{
+    text-align: center;
+}
+
+.profile_img_box{
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+
+.profile_img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.social_user_area{
+    text-align: center;
+}
+
+
+.profile_info_box>.user_name {
+    padding-top: 8px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 20px;
+    letter-spacing: -.1px;
+    margin: 0;
+    color: #222222;
+}
+
+.main_txt, .sub_txt {
+    font-size: 14px;
+    letter-spacing: -.21px;
+    color: rgba(34,34,34,.8);
+}
+
+.main_txt {
+    padding-top: 8px;
+}
+
+lg .sub_txt, .md .sub_txt {
+    max-width: 400px;
+}
+.sub_txt {
+    padding-top: 4px;
+    margin: 0 auto;
+}
+
+.btn.btn_follow.solid, .btn.btn_follow {
+    line-height: 42px;
+}
+
+.btn.btn_follow.solid, .btn.btn_follow {
+    line-height: 42px;
+}
+
+.btn.btn_follow {
+    min-width: 140px;
+    margin-left: auto;
+    /* flex-shrink: 0; */
+    /* padding: 0 20px; */
+    height: 42px;
+}
+
+.solid{
+    font-weight: 700;
+    color: #fff;
+    background-color: #222;
+}
+
+.medium{
+    border-radius: 12px;
+    font-size: 14px;
+    letter-spacing: -.14px;
+}
+
+.btn{
+    display: inline-flex;
+    cursor: pointer;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.btn_social_more{
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    margin-top: 16px;
+    margin-left: 8px;
+    position: relative;
+}
+
+.outline {
+    border: 1px solid #d3d3d3;
+}
+
+.social-more {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.tab_list{
+    padding-top: 8px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.tab_link{
+    padding: 20px 10px;
+    /*display: -webkit-box;*/
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.tab_menu {
+    margin-right: 4px;
+    font-size: 16px;
+    /*letter-spacing: -.16px;*/
+    letter-spacing: -.24px;
+}
+
+.menu_count{
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.social_feeds{
+    padding: 30px 40px 0;
+}
+
+
+.gutter_item {
+    width: 28px;
+}
+
+.feed_card {
+    width: calc(25% - 21px);
+}
+
+.feed_card>a {
+    position: relative;
+    display: block;
+}
+
+.social_img_box{
+    overflow: hidden;
+    padding-top: 100%;
+    border-radius: 10px;
+}
+
+.social_img_box.vertical{
+    padding-top: 134.77%;
+}
+
+.feed_card, .social_img_box{
+    position: relative;
+}
+
+.picture {
+    /* display: -webkit-box; */
+    display: flex;
+}
+
+.social_img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* -webkit-transform: translate(-50%,-50%); */
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
+    /* -o-object-fit: cover; */
+    object-fit: cover;
+}
+.image {
+    /* -o-object-fit: cover; */
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    image-rendering: auto;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.card_detail{
+    padding: 8px 4px 0;
+}
+
+.user_box{
+    /* display: -webkit-box; */
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.img_profile{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(34,34,34,.1);
+    /* -o-object-fit: cover; */
+    object-fit: cover;
+}
+
+.text_box{
+    margin-top: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 20px;
+    font-size: 14px;
+    letter-spacing: -.21px;
+    max-height: 40px;
+}
+
+.text_box, .user_name{
+    overflow: hidden;
+    /*-o-text-overflow: ellipsis;*/
+    text-overflow: ellipsis;
+}
+
+.user_name {
+    -webkit-box-flex: 1;
+    flex: 1;
+    padding-left: 4px;
+    padding-right: 6px;
+    white-space: nowrap;
+    font-size: 15px;
+    letter-spacing: -.15px;
+    color: rgba(34,34,34,.8);
+}
+
+.like {
+    position: relative;
+}
+.main_txt, .sub_txt{
+    font-size: 14px;
+    letter-spacing: -.21px;
+    color: rgba(34,34,34,.8);
+    margin: 0;
+}
+.main_txt{
+    padding-top: 8px;
+}
+
+
+
+.btn{
+    display: -webkit-inline-box;
+    display: inline-flex;
+    cursor: pointer;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+    color: rgba(34,34,34,.8);
+    background-color: #fff;
+}
+[role=button] {
+    cursor: pointer;
+}
+.like:before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    bottom: -6px;
+    left: -6px;
+}
+[class*=social-like-gray-sm] {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+.like_count{
+    padding-left: 3px;
+}
+
+
+.text_box {
+    margin-top: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 20px;
+    font-size: 14px;
+    letter-spacing: -.21px;
+}
+
+.text_box, .user_name {
+    overflow: hidden;
+    /* -o-text-overflow: ellipsis; */
+    text-overflow: ellipsis;
+}
+
+
+.picture{
+    /*display: -webkit-box;*/
+    display: flex;
+}
+
+
+
+
+
+/*팝업*/
+
+.layer {
+    user-select: none!important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(34, 34, 34, .5);
+    z-index: 1010;
+}
+
+.layer_container {
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /*-webkit-transform: translate(-50%,-50%);*/
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    width: 448px;
+    border-radius: 16px;
+    /*-webkit-box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%);*/
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%);
+}
+
+.btn_layer_close{
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    cursor: pointer;
+}
+
+[class*=ico-] {
+    width: 24px;
+    height: 24px;
+}
+
+.layer_header .title{
+    line-height: 22px;
+    padding: 18px 50px 20px;
+    min-height: 60px;
+    font-size: 18px;
+    /*letter-spacing: -.27px;*/
+    font-weight: 700;
+    letter-spacing: -.15px;
+    color: #000;
+    text-align: center;
+    background-color: #fff;
+
+    display: block;
+    /*font-size: 1.5em;*/
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin: 0;
+}
+
+.title .cnt{
+    letter-spacing: -.09px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.layer_social_user_list.lg .layer_content, .layer_social_user_list.md .layer_content{
+    max-height: 388px;
+    margin-bottom: 32px;
+}
+
+.user_list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 388px;
+    max-height: 388px;
+    padding: 0 32px;
+    margin: 0;
+}
+.user_link{
+    /*display: -webkit-box;*/
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-right: 10px;
+    width: 100%;
+}
+.user_item:first-child .user_box {
+    padding-top: 0;
+}
+
+.user_box{
+    /*display: -webkit-box;*/
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.img_box{
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    margin-right: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 100%;
+}
+
+.info_box{
+    /*display: -webkit-box;*/
+    display: flex;
+    /*-webkit-box-orient: vertical;*/
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    text-align: center;
+}
+
+.user_name {
+    /*display: -webkit-inline-box;*/
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -.33px;
+}
+
+.user_name .user_name_text{
+    overflow: hidden;
+    /*-o-text-overflow: ellipsis;*/
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.user_subname{
+    margin-top: 2px;
+    font-size: 12px;
+    letter-spacing: -.33px;
+    color: rgba(34,34,34,.5);
+}
+
+.btn.btn_follow.solid, .btn.btn_follow{
+    line-height: 42px;
+}
+
+.btn.btn_follow {
+    margin-top: 16px;
+    padding: 0 52px;
+}
+
+
+
+.solid {
+    font-weight: 700;
+    color: #fff;
+    background-color: #222;
+}
+
+.btn_social_more{
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    margin-top: 16px;
+    margin-left: 8px;
+    position: relative;
+}
+
+outline {
+    border: 1px solid #d3d3d3;
+}
+
+.small, .xsmall {
+    font-size: 12px;
+    letter-spacing: -.06px;
+    border-radius: 10px;
+}
+
+#follower_pop{
+    display: none;
+}
+#following_pop{
+    display: none;
+}
+
+.layer_alert{
+    text-align: center;
+}
+.layer_alert .layer_container{
+    width: 360px;
+}
+
+.action_list{
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+.action_list .action_item{
+    color: #f15746;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(17,17,17,.1);
+}
+.action_list li{
+    height: 46px;
+    /*display: -webkit-box;*/
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*, :after, :before{
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+div {
+    display: block;
+}
+
+body, button, input, select, table, textarea {
+    font-family: -apple-system,BlinkMacSystemFont,Roboto,AppleSDGothicNeo-Regular,NanumBarunGothic,NanumGothic,나눔고딕,Segoe UI,Helveica,Arial,Malgun Gothic,Dotum,sans-serif;
+    color: #222;
+}
+
+body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, input, li, ol,
+p, select, table, td, textarea, th, ul{
+    margin: 0;
+    padding: 0;
+}
+
+img{
+    border: 0;
+    vertical-align: top;
+    user-select: none!important;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+/*img {*/
+/*    overflow-clip-margin: content-box;*/
+/*    overflow: clip;*/
+/*}*/
+button{
+    border: 0;
+    outline: none;
+    background: none;
+}
+
+li, ol, ul {
+    list-style: none;
+}
+
+ul {
+    /*display: block;*/
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+a, a:active, a:focus, a:hover {
+    text-decoration: none;
+}
+a {
+    color: inherit;
+    -webkit-tap-highlight-color: rgba(0,0,0,.1);
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.header.no_line{
+    /*-webkit-box-shadow: 0 0 0 0 transparent!important;*/
+    box-shadow: 0 0 0 0 transparent!important;
+}
+
+.header.lg, .header.md{
+    /*-webkit-box-shadow: 0 0 0 0 transparent;*/
+    /*box-shadow: 0 0 0 0 transparent;*/
+    min-height: 100px;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #fff;
+}
+
+.header .header_top{
+    /*-webkit-box-shadow: 0 1px 0 0 rgb(0 0 0 / 10%);*/
+    box-shadow: 0 1px 0 0 rgb(0 0 0 / 10%);
+}
+
+.header .top_inner {
+    /*display: -webkit-box;*/
+    display: flex;
+    padding: 8px 40px;
+}
+
+.header .top_list {
+    /*display: -webkit-box;*/
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.header .top_link{
+    /*display: -webkit-box;*/
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: -.06px;
+    color: rgba(34,34,34,.8);
+}
+
+.header .top_item+.top_item{
+    margin-left: 24px;
+}
+
+.header .main_inner {
+    /*display: -webkit-box;*/
+    display: flex;
+    padding: 0 40px;
+    height: 68px;
+    min-width: 320px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.header .logo{
+    display: -webkit-box;
+    display: flex;
+    width: 120px;
+    height: 24px;
+}
+.header .gnb_area, .header .gnb_list{
+    /*display: -webkit-box;*/
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.header .gnb_area{
+    margin-left: auto;
+}
+
+.header .gnb_item{
+    margin-right: 40px;
+}
+
+.header .gnb_item.gnb_on .gnb_link{
+    font-weight: 700;
+}
+
+.header .gnb_link, .header .search_btn_box {
+    /*display: -webkit-box;*/
+    display: flex;
+}
+
+.header .gnb_link{
+    position: relative;
+    font-size: 15px;
+    letter-spacing: -.15px;
+}
+
+.header .gnb_item.gnb_on .gnb_link:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    background-color: #222;
+    height: 2px;
+}
+
+.header .btn_search {
+    display: inherit;
+    border: none!important;
+}
+
+.header .nav-search {
+    width: 28px;
+    height: 28px;
+}
+
+.search_area .search{
+    position: relative;
+    padding: 0 40px 0 44px;
+    height: 40px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+}
+
+.search_area .ico-search-gray {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+}
+
+[class*=ico-] {
+    width: 24px;
+    height: 24px;
+}
+.search_area .input_search{
+    width: 100%;
+    height: 100%;
+    /*-webkit-transition: all .1s;*/
+    /*-o-transition: all .1s;*/
+    transition: all .1s;
+    font-size: 14px;
+    letter-spacing: -.21px;
+}
+
+.search_area .btn_search_delete{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+}
+
+.header .nav_btn_box {
+    display: none;
+}
+
+.header .btn_search {
+    display: inherit;
+    border: none!important;
+}
+
+.navigation_wrap{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+}
+
+.navigation_wrap .navigation{
+    display: block;
+    position: fixed;
+    z-index: 1010;
+    top: 0;
+    right: -79.4%;
+    bottom: 0;
+    width: 79.4%;
+    background-color: #fff;
+    padding-top: 60px;
+    overflow-y: auto;
+    transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out;
+}
+
+.navigation_wrap .navigation_inner{
+    position: relative;
+    padding-bottom: 55px;
+    min-height: 100%;
+}
+
+.navigation_wrap .nav_list .nav_item {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.navigation_wrap .nav_list .nav_link{
+    display: block;
+    padding: 19px 20px 18px;
+    height: 100%;
+    font-size: 15px;
+    letter-spacing: -.15px;
+    font-weight: 700;
+}
+.navigation_wrap .nav_list .nav_item{
+    border-bottom: 1px solid #ebebeb;
+}
+
+
+
+
+
+
+
+.social_header{
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    padding-bottom: 16px;
+    background-color: #fff;
+}
+
+.style_tab_list{
+    /*display: -webkit-box;*/
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.tab_item {
+    padding: 8px 14px;
+    min-width: 59px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: -.27px;
+}
+
+.tab_item.tab_on{
+    background-color: #222;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 19px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+*, :after, :before {
+    /*-webkit-box-sizing: border-box;*/
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, select, table, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+div {
+    display: block;
+}
+body, button, input, select, table, textarea {
+    font-family: -apple-system,BlinkMacSystemFont,Roboto,AppleSDGothicNeo-Regular,NanumBarunGothic,NanumGothic,나눔고딕,Segoe UI,Helveica,Arial,Malgun Gothic,Dotum,sans-serif;
+    color: #222;
+}
+li, ol, ul {
+    list-style: none;
+}
+ul {
+    /*display: block;*/
+    /*list-style-type: disc;*/
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+a, a:active, a:focus, a:hover {
+    text-decoration: none;
+    color: #222;
+}
+a {
+    /*color: inherit;*/
+    -webkit-tap-highlight-color: rgba(0,0,0,.1);
+    text-decoration: none;
+}
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+nav {
+    display: block;
+}
+button {
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: none;
+    background-color: transparent;
+    /*-webkit-appearance: none;*/
+    /*-moz-appearance: none;*/
+    appearance: none;
+    border-radius: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*푸터*/
+
+footer .footer_flex_box2{
+    margin: 0 auto;
+    padding: 0;
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    height: 25.65rem;
+    border-bottom: 1px solid lightgray;
+}
+footer .footer_flex_box2 #footer_left_box2{
+    display: flex;
+    margin-top: 5.1rem;
+}
+footer .footer_flex_box2 #footer_left_box2 #fbtext2_left{
+    margin-right: 11.2rem;
+}
+footer .footer_flex_box2 #footer_left_box2 ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+footer .footer_flex_box2 .fbb2_Btext{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+footer .footer_flex_box2 #footer_left_box2 li{
+    margin: 1.4rem 0;
+}
+footer .footer_flex_box2 #footer_left_box2 a{
+    text-decoration: none;
+    color: gray;
+    font-size: 1.4rem;
+}
+footer .footer_flex_box2 #footer_right_box2{
+    margin-top: 5.1rem;
+}
+footer .footer_flex_box2 #footer_right_box2 ul{
+    list-style: none;
+    margin: 0.8rem 0;
+    padding: 0;
+}
+footer .footer_flex_box2 #footer_right_box2 li{
+    font-size: 1.27rem;
+    margin: 0.5rem 0;
+    color: gray;
+}
+footer .footer_flex_box2 #footer_right_box2 #footer_ask_text{
+    font-size: 1.27rem;
+}
+footer .footer_flex_box2 #footer_right_box2 #footer_ask_box{
+    background-color: black;
+    text-align: center;
+    width: 10.8rem;
+    padding: 0.95rem 0;
+    margin-top: 1.6rem;
+}
+footer .footer_flex_box2 #footer_right_box2 a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.18rem;
+}
+
+footer .footer_flex_box3{
+    margin: 0 auto;
+    padding: 0;
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+}
+footer .footer_flex_box3 a{
+    text-decoration: none;
+}
+footer .footer_flex_box3 ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+footer .footer_flex_box3 #footer_box3{
+    width: 99.85%;
+    margin: 0 auto;
+}
+footer .footer_flex_box3 #footer_box3 #footer_box3_1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+footer .footer_flex_box3 #footer_box3_1_text{
+    margin-top: 2.9rem;
+    display: flex;
+}
+footer .footer_flex_box3 #footer_box3_1_text li{
+    font-size: 1.4rem;
+    margin-right: 1.96rem;
+}
+footer .footer_flex_box3 #footer_box3_1_text a{
+    color: black;
+}
+footer .footer_flex_box3 #footer_box3_1_text #policy{
+    font-weight: bold;
+}
+footer .footer_flex_box3 #sns_img{
+    margin-top: 2.9rem;
+    display: flex;
+    justify-content: space-between;
+    width: 11.5rem;
+}
+footer .footer_flex_box3 #sns_img li{
+    width: 2.35rem;
+    height: 2.35rem;
+}
+footer .footer_flex_box3 #sns_img #insta_img{
+    background: url(../img/insta_img.png)no-repeat center/cover;
+}
+footer .footer_flex_box3 #sns_img #facebook_img{
+    background: url(../img/facebook_img.png)no-repeat center/cover;
+}
+footer .footer_flex_box3 #sns_img #chat_img{
+    background: url(../img/chat_img.png)no-repeat center/cover;
+}
+footer .footer_flex_box3 #footer_box3_2{
+    margin-top: 1.7rem;
+    margin-bottom: 1.2rem;
+}
+footer .footer_flex_box3 #footer_box3_2 ul{
+    display: flex;
+}
+footer .footer_flex_box3 #footer_box3_2 ul li{
+    font-size: 1.27rem;
+    color:gray;
+    margin-right: 1.77rem;
+}
+footer .footer_flex_box3 #footer_box3_2 ul li a{
+    text-decoration: underline;
+    color: gray;
+}
+
+footer .footer_flex_box4{
+    margin: 0 auto;
+    margin-bottom: 2.9rem;
+    padding: 0;
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 5rem;
+    color: gray;
+    font-size: 1.18rem;
+}
+footer .footer_flex_box4 #footer_left_box4{
+    width: 63rem;
+}
+footer #sns_and_button #footer_button{
+    display: none;
+}
+
+#__layout {
+    opacity: 1;
+}
+
+.wrap {
+    position: relative;
+    padding-top: 90px;
+}
+
+.container.my {
+    margin-left: 14rem;
+    margin-right: 14rem;
+    padding: 40px 40px 160px;
+
+    max-width: 1280px;
+}
+
+.container.my .content_area {
+    overflow: hidden;
+    min-height: 380px;
+}
+.content_title.border {
+    padding-bottom: 16px;
+    border-bottom: 3px solid #222;
+}
+
+.content_title{
+    display: -webkit-box;
+    display: flex;
+    padding: 5px 0 6px;
+}
+
+.title {
+    font-size: 24px;
+    letter-spacing: -.36px;
+}
+
+.title>h3{
+    line-height: 29px;
+    font-size: inherit;
+}
+
+.user_profile {
+    /* display: -webkit-box; */
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 50px 0 38px;
+    border-bottom: 1px solid #ebebeb;
+    background-color: #fff;
+}
+
+.profile_thumb {
+    -webkit-box-flex: 0;
+    flex: none;
+    overflow: hidden;
+    margin-right: 18px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.profile_thumb .thumb_img {
+    width: 100%;
+    height: 100%;
+}
+
+.profile_detail .name{
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -.12px;
+    color: #000;
+}
+
+.profile_detail .name {
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -.12px;
+    color: #000;
+}
+
+.profile_btn_box {
+    margin-top: 8px;
+    font-size: 0;
+}
+
+.outlinegrey {
+    border: 1px solid #d3d3d3;
+    color: rgba(34,34,34,.8);
+}
+/* input[type=file]::file-selector-button{
+    border: 1px solid #d3d3d3;
+    color: rgba(34,34,34,.8);
+    background-color: white;
+} */
+.small, .xsmall {
+    font-size: 12px;
+    letter-spacing: -.06px;
+}
+
+.small {
+    padding: 0 14px;
+    height: 34px;
+    border-radius: 10px;
+}
+
+.btn {
+    /* display: -webkit-inline-box; */
+    display: inline-flex;
+    cursor: pointer;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+    /* color: rgba(34,34,34,.8); */
+    background-color: #fff;
+}
+
+.profile_btn_box .btn+.btn {
+    margin-left: 8px;
+}
+
+.outlinegrey {
+    border: 1px solid #d3d3d3;
+    color: rgba(34,34,34,.8);
+}
+
+input, textarea {
+    padding: 0;
+    outline: 0;
+    border: 0;
+    resize: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    background-color: transparent;
+}
+
+.profile_info {
+    padding-top: 38px;
+    /* max-width: 480px; */
+    margin: 0 auto;
+}
+
+.profile_group {
+    padding-top: 58px;
+}
+
+.group_title {
+    font-size: 18px;
+    letter-spacing: -.27px;
+}
+
+.unit {
+    padding: 25px 60px 18px 0;
+    position: relative;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.unit>.title {
+    font-size: 13px;
+    letter-spacing: -.07px;
+    color: rgba(34,34,34,.5);
+}
+
+.desc{
+    padding-top: 6px;
+    font-size: 16px;
+    letter-spacing: -.16px;
+    overflow: hidden;
+    /* -o-text-overflow: ellipsis; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.desc::placeholder{
+    color: #222;
+
+}
+
+.btn.btn_modify{
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    padding-top: 1px;
+    padding-left: 11px;
+    padding-right: 12px;
+}
+
+.outlinegrey {
+    border: 1px solid #d3d3d3;
+    color: rgba(34,34,34,.8);
+}
+
+.modify.name {
+    padding-top: 25px;
+}
+
+.modify .title {
+    padding-bottom: 22px;
+    color: #222;
+}
+
+.input_box {
+    position: relative;
+    padding: 10px 0 14px;
+}
+
+.input_title {
+    font-size: 13px;
+    letter-spacing: -.07px;
+    line-height: 18px;
+}
+
+.input_item {
+    position: relative;
+}
+
+.input_error {
+    display: none;
+}
+
+.modify_btn_box {
+    padding-top: 28px;
+    text-align: center;
+    font-size: 0;
+}
+
+.modify_btn_box .btn {
+    padding: 0 38px;
+}
+
+.medium {
+    /* padding: 0 18px; */
+    height: 42px;
+    border-radius: 12px;
+    font-size: 14px;
+    letter-spacing: -.14px;
+}
+
+.modify_btn_box .btn+.btn {
+    margin-left: 8px;
+}
+
+
+.solid.disabled, .solid:disabled {
+    background-color: #ebebeb;
+    color: #fff;
+    cursor: default;
+}
+
+.solid {
+    font-weight: 700;
+    /* color: #fff; */
+    /* background-color: #222; */
+}
+
+.btn_withdrawal, .btn_withdrawal:hover {
+    text-decoration: underline;
+}
+
+.btn_withdrawal{
+    margin-top: 55px;
+    padding: 5px 0;
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: -.07px;
+    color: rgba(34,34,34,.5);
+}
+
+
+
+
+
+body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, select, table, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+*, :after, :before {
+    /* -webkit-box-sizing: border-box; */
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+div {
+    display: block;
+}
+body, button, input, select, table, textarea {
+    font-family: -apple-system,BlinkMacSystemFont,Roboto,AppleSDGothicNeo-Regular,NanumBarunGothic,NanumGothic,나눔고딕,Segoe UI,Helveica,Arial,Malgun Gothic,Dotum,sans-serif;
+    color: #222;
+}
+img, video {
+    border: 0;
+    vertical-align: top;
+    /* -moz-user-select: none!important; */
+    user-select: none!important;
+    -webkit-user-drag: none;
+    /* -webkit-touch-callout: none; */
+    /* -webkit-user-select: none; */
+}
+strong {
+    font-weight: bold;
+}
+a, a:active, a:focus, a:hover {
+    text-decoration: none;
+}
+a {
+    /* color: inherit; */
+    -webkit-tap-highlight-color: rgba(0,0,0,.1);
+}
+input {
+    writing-mode: horizontal-tb !important;
+    /* font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ; */
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+}
+.nanumgothic * {
+    font-family: 'Nanum Gothic', sans-serif;}
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css" rel="stylesheet">
+</style>
+
 <body>
-    Hello world
+    <div id="__nuxt">
+        <div id="__layout">
+            <div tabindex="0" class="wrap window_os lg">
+                <!-- 헤더 시작 -->
+                <div>
+                    <header th:fragment="head">
+                        <meta charset="UTF-8">
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <link rel="stylesheet" href="../../css/social/style_header.css">
+                        <div>
+                            <div class="social header lg no_line">
+                                <div class="header_top">
+                                    <div class="top_inner">
+                                        <ul class="top_list">
+                                            <li class="top_item">
+                                                <a href="/notice" class="top_link"> 고객센터 </a>
+                                            </li>
+                                            <li class="top_item">
+                                                <a href="/my/wish" class="top_link"> 관심상품 </a>
+                                            </li>
+                                            <li class="top_item">
+                                                <a href="/my" class="top_link"> 마이페이지 </a>
+                                            </li>
+                                            <li class="top_item" style="display: none;">
+                                                <a href="/login" class="top_link"> 로그인 </a>
+                                            </li>
+                                            <li class="top_item">
+                                                <a href="/" class="top_link"> 로그아웃 </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="header_main">
+                                    <div class="main_inner" style="font-family: 'Nanum Gothic';font-size: 35px; font-weight: bold">
+                                        OFER
+                                        <div class="gnb_area">
+                                            <nav class="gnb">
+                                                <ul class="gnb_list">
+                                                    <li class="gnb_item gnb_on">
+                                                        <a href="/social/trending" class="gnb_link"> STYLE </a>
+                                                    </li>
+                                                    <li class="gnb_item">
+                                                        <a href="#" class="gnb_link"> SHOP </a>
+                                                    </li>
+                                                    <li class="gnb_item">
+                                                        <a href="/about" target="_blank" class="gnb_link"> ABOUT </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                            <div class="search_btn_box">
+                                                <a aria-label="검색" href="#" class="btn_search">
+                                                    <img src="https://cdn-icons-png.flaticon.com/128/54/54481.png"
+                                                        class="nav-search icon sprite-icons">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div style="display: none;">
+                                            <div class="search_area" value="">
+                                                <div class="search">
+                                                    <img src="../../img/search.png">
+                                                    <input type="text" placeholder="" title="검색창"
+                                                        class="input_search show_placeholder_on_focus">
+                                                    <button class="btn_search_delete" style="display: none;">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="nav_btn_box">
+                                            <button type="button" aria-label="검색" class="btn_search">
+                                            </button>
+                                            <button type="button" aria-label="메뉴" class="btn_menu">
+                                            </button>
+                                        </div>
+                                        <div style="display: none;">
+                                            <div class="navigation_wrap">
+                                                <div class="navigation">
+                                                    <div class="navigation_inner">
+                                                        <ul class="nav_list">
+                                                            <li class="nav_item">
+                                                                <a href="#" class="nav_link"> STYLE </a>
+                                                            </li>
+                                                            <li class="nav_item">
+                                                                <a href="#" class="nav_link"> SHOP </a>
+                                                            </li>
+                                                            <li class="nav_item">
+                                                                <a href="#" class="nav_link"> 자주 묻는 질문 </a>
+                                                            </li>
+                                                            <li class="nav_item">
+                                                                <a href="#" class="nav_link"> 공지사항 </a>
+                                                            </li>
+                                                            <li class="nav_item" style="display: none;">
+                                                                <a href="#" class="nav_link"> 로그인 </a>
+                                                            </li>
+                                                            <li class="nav_item">
+                                                                <a href="#" class="nav_link"> 마이 페이지 </a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="nav_logout">
+                                                            <button class="btn_logout">로그아웃</button>
+                                                            <p class="text_mail"></p>
+                                                        </div>
+                                                        <div class="nav_download">
+                                                            <p class="download_txt">KREAM 앱 설치 후 사용해 보세요!</p>
+                                                            <div class="btn_appdown">
+                                                                <a href="#" class="btn outline medium"> 앱 다운로드 </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" aria-label="닫기" class="btn_nav_close">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="social_header">
+                                <div class="style_tab_list">
+                                    <a href="#" class="tab_item tab_on"> 인기 </a>
+                                    <a href="#" class="tab_item"> 최신 </a>
+                                    <a href="#" class="tab_item"> 팔로잉 </a>
+                                    <a href="#" class="tab_item"> 내스타일 </a>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+                <!--  헤더 끝-->
+
+                <!-- 컨테이너 -->
+                <div class="container social lg">
+                    <div class="content">
+                        <!-- 해시태그 시작
+                        <div class="keyword_bind">
+                            <a href="#" class="trend_keyword"> # 셋업코디 </a>
+                            <a href="#" class="trend_keyword"> # 베이프 </a>
+                            <a href="#" class="trend_keyword"> # 오뭐신 </a>
+                            <a href="#" class="trend_keyword"> # 클락스 </a>
+                            <a href="#" class="trend_keyword"> # 레이어드룩 </a>
+                            <a href="#" class="trend_keyword"> # 나투시 </a>
+                            <a href="#" class="trend_keyword"> # 스트릿 </a>
+                            <a href="#" class="trend_keyword"> # 미리메리챌린지 </a>
+                        </div>
+                        -->
+                        <!-- 해시태그 끝 -->
+
+                        <!-- 피드 시작 -->
+
+
+
+
+<!--
+                        <div class="social_feeds">
+                            <div transition-duration="0" item-selector=".item" gutter=".gutter_item"
+                                horizontal-order="true" class="masonry_posts"
+                                style="position: relative; height: 4956px;">
+                                <div class="gutter_item"></div>
+-->
+
+
+                                <!-- 게시물 시작 -->
+<!--
+                                <div class="feed_card item vertical" style="position: absolute; left: {{ a }}px; top: {{ b }}px;">
+                                    <a href="#">{{ a }}
+                                        <div class="card_box">
+                                            <div class="social_img_box vertical">
+                                                <picture class="picture social_img">
+                                                    <source type="image/webp"
+                                                        srcset="{{ feed.image }}">
+                                                    <source
+                                                        srcset="https://kream-phinf.pstatic.net/MjAyMjEyMjhfMTc4/MDAxNjcyMTk0MjY2Njk3.ID4oXLjphKCSG17vPHX7Ku_DC93mQrR7M2-c9TgWXvwg.75cNsQCfe4XQZ9LwxxrRRQce7sJbNxiiYTGdKSesTxIg.JPEG/p_bee3aabc37b04e80875a1a1f558b8421.jpeg?type=m">
+                                                    <img alt="소셜이미지"
+                                                        src="{{ feed.image }}"
+                                                        loading="auto" class="image">
+                                                </picture>
+                                            </div>
+
+                                            <div class="card_detail">
+                                                <div class="user_box">
+                                                    <picture class="picture img_profile">
+                                                        <source type="image/webp"
+                                                            srcset="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s_webp">
+                                                        <source
+                                                            srcset="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s">
+                                                        <img alt="사용자 프로필 이미지"
+                                                            src="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s"
+                                                            loading="auto" class="image">
+                                                    </picture>
+                                                    <p class="user_name">yeni_day</p><span aria-label="좋아요"
+                                                        role="button" class="btn like">
+                                                        <img src="https://cdn-icons-png.flaticon.com/128/4225/4225972.png" alt="좋아요 이미지"
+                                                            class="icon sprite-icons social-like-gray-sm">
+                                                        <span class="like_count">128</span></span>
+                                                </div>
+                                                <p class="text_box">삿포로</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+  -->               <div class="social_feeds">
+    <div transition-duration="0" item-selector=".item" gutter=".gutter_item"
+        horizontal-order="true" class="masonry_posts"
+        style="position: relative; height: 4956px;">
+        <div class="gutter_item"></div>
+
+        <div class="container">
+            <div class="row">
+                {% for feed in feeds %}
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="feed_card item vertical" style="position: absolute; left: 0px; top: 0px;">
+                            <a href="#">{{ a }}
+                                <div class="card_box">
+                                    <div class="social_img_box vertical">
+                                                <picture class="picture social_img">
+                                                    <source type="image/webp"
+                                                        srcset="{{ feed.image }}">
+                                                    <source
+                                                        srcset="https://kream-phinf.pstatic.net/MjAyMjEyMjhfMTc4/MDAxNjcyMTk0MjY2Njk3.ID4oXLjphKCSG17vPHX7Ku_DC93mQrR7M2-c9TgWXvwg.75cNsQCfe4XQZ9LwxxrRRQce7sJbNxiiYTGdKSesTxIg.JPEG/p_bee3aabc37b04e80875a1a1f558b8421.jpeg?type=m">
+                                                    <img alt="소셜이미지"
+                                                        src="{{ feed.image }}"
+                                                        loading="auto" class="image">
+                                                </picture>
+                                            </div>
+
+                                            <div class="card_detail">
+                                                <div class="user_box">
+                                                    <picture class="picture img_profile">
+                                                        <source type="image/webp"
+                                                            srcset="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s_webp">
+                                                        <source
+                                                            srcset="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s">
+                                                        <img alt="사용자 프로필 이미지"
+                                                            src="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s"
+                                                            loading="auto" class="image">
+                                                    </picture>
+                                                    <p class="user_name">yeni_day</p><span aria-label="좋아요"
+                                                        role="button" class="btn like">
+                                                        <img src="https://cdn-icons-png.flaticon.com/128/4225/4225972.png" alt="좋아요 이미지"
+                                                            class="icon sprite-icons social-like-gray-sm">
+                                                        <span class="like_count">128</span></span>
+                                                </div>
+                                                <p class="text_box">삿포로</p>
+                                            </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                                <!-- 게시물 끝 -->
+<!-- 게시물 시작 -->
+
+
+                            </div>
+
+                        </div>
+
+                        <!-- 피드 끝 -->
+                    </div>
+                </div>
+                <!-- 컨테이너 끝 -->
+                <!-- 푸터 시작 -->
+
+                <!-- 푸터 끝 -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <script src="../../js/style/profile.js"></script> -->
 </body>
+
+<script>
+
+    // 좋아요 버튼
+    $(document).on('click', '.like_img', function () {
+        /*$(".check_box").index(this); 몇번쨰 클래스인지 가져옴 // .index는 함수이름*/
+        let index = $(".like_img").index(this);
+        const sesessionId2 = sessionStorage.getItem('userid');
+        let like = document.getElementsByClassName('like_img');
+        let likeCheck = like.item(index).getAttribute('src');
+        if (sesessionId2 != null) {    // 로그인 되어있을 경우에만 바꿔줌
+            if (likeCheck == '../../img/styleImg/like_icon.png') {
+                like.item(index).setAttribute('src', '../../img/styleImg/like_after_icon.png');
+            } else if (likeCheck == '../../img/styleImg/like_after_icon.png') {
+                like.item(index).setAttribute('src', '../../img/styleImg/like_icon.png');
+            }
+        } else {
+            location.href = '/login';
+        }
+    });
+
+</script>
+
 </html>

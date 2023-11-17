@@ -14,6 +14,7 @@ from .models import Feed
 class Main(APIView):
     def get(self, request):
         feed_list = Feed.objects.all()   #select * from content_feed;
+        print(feed_list)
 
         for feed in feed_list:
             print(feed.content)
@@ -39,7 +40,9 @@ class UploadProfile(APIView):
 
         file = request.FILES['file']
         email = request.data.get('email')
-        uuid_name = uuid4().hex
+        # 이미지 파일의 확장자 추출
+        extension = file.name.split('.')[-1].lower()
+        uuid_name = uuid4().hex + extension
         save_path = os.path.join(MEDIA_ROOT, uuid_name)
 
         with open(save_path, "wb+") as destination:
@@ -52,3 +55,8 @@ class UploadProfile(APIView):
         user.save()
 
         return Response(status=200)
+
+class Upload(APIView):
+    def get(self, request):
+
+        return render(request, 'OFER/main.html')

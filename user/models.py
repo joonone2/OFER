@@ -11,10 +11,11 @@ class User(AbstractBaseUser):
         유저 이메일주소 -> 회원가입할때 사용하는 아이디
         유저 비밀번호 -> 디폴트로 쓸께요
     """
-    profile_image = models.TextField()  # 프로필 이미지
+    profile_image = models.ImageField(upload_to='user_profile_images/')  # 프로필 이미지
     nickname = models.CharField(max_length=24, unique=True)
     name = models.CharField(max_length=24)
     email = models.EmailField(unique=True)
+    password = models.CharField(max_length=128)
 
     USERNAME_FIELD = 'nickname'
 

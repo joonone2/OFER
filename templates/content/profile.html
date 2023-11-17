@@ -101,12 +101,13 @@
                 <a href="#" role="button" id="dropdownMenuLink"
                    data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="box" style="width: 25px; height: 25px">
+                        <!--
                         <img class="profile"
                              src="https://t1.daumcdn.net/cfile/tistory/2513B53E55DB206927?original">
-<!--
-                        <img class="profile"
-                             src="{get_media_prefix %}{ user.profile_image }}">
 -->
+                        <img class="profile"
+                             src="{% load static %}{% get_media_prefix %}{{ user.profile_image }}">
+
                     </div>
                 </a>
 
@@ -119,12 +120,12 @@
         </div>
     </div>
 </nav>
-
+{% load static %}
 <div style="display: flex; flex-direction: row; justify-content: center; padding-top: 60px; background-color: #fafafa">
     <div style="padding: 20px 60px">
         <div class="box" style="width: 175px; height: 175px;">
             <img class="profile"
-                 src="https://t1.daumcdn.net/cfile/tistory/2513B53E55DB206927?original">
+                 src="{% get_media_prefix %}{{ user.profile_image }}">
         </div>
     </div>
     <div style="text-align: left;">
@@ -133,7 +134,7 @@
                 {{ user.nickname }}
             </div>
            <button id="button_profile_upload" style="margin-right: 40px">프로필 사진 편집</button>
-            <input type="file" id="input_fileupload" style="display: none;" onchange="profile_upload;">
+            <input type="file" id="input_fileupload" style="display: none;" onchange="profile_upload();">
 
             <span style="margin-right:40px;" class="material-symbols-outlined">settings</span>
         </div>
@@ -307,10 +308,10 @@
 
 
     function profile_upload(){
-        let file = $('#input_fileupload')[0].files[0]
+        let file = $('#input_fileupload')[0].files[0];
         let email = "{{ user.email }}";
 
-        let fd = new FormData()
+        let fd = new FormData();
 
         fd.append('file', file);
         fd.append('email', email);
@@ -331,7 +332,7 @@
                 console.log("완료");
                 location.replace("/content/profile");
             }
-        })
+        });
     }
 
 </script>
