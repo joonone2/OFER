@@ -21,6 +21,32 @@ class Main(APIView):
         return render(request, 'OFER/main.html', context=dict(feeds=feed_list))
 
 
+
+class UploadFeed(APIView):
+
+    def get(self, request):
+
+        return render(request, 'user/upload.html')
+    def post(self, request):
+
+        # 일단 파일 불러와
+        file = request.FILES['file']
+
+        uuid_name = uuid4().hex
+        save_path = os.path.join(MEDIA_ROOT, uuid_name)
+
+        with open(save_path, 'wb+') as destination:
+            for chunk in file.chunks():
+                destination.write(chunk)
+
+        asdf = uuid_name
+        content123 = request.data.get('content')
+        email = request.session.get('email', None)
+
+        Feed.objects.create(image=asdf, content=content123, email=email)
+
+        return Response(status=200)
+
 class Profile(APIView):
     def get(self, request):
         email = request.session.get('email', None)
@@ -36,6 +62,8 @@ class Profile(APIView):
         return render(request, 'content/profile.html', context=dict(user=user))
 
 class UploadProfile(APIView):
+
+
     def post(self, request):
 
         file = request.FILES['file']
@@ -59,4 +87,4 @@ class UploadProfile(APIView):
 class Upload(APIView):
     def get(self, request):
 
-        return render(request, 'OFER/main.html')
+        return render(request, 'user/upload.html')

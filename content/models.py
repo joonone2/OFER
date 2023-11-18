@@ -4,7 +4,7 @@ from django.db import models
 class Feed(models.Model):  # 게시물
     content = models.TextField()    # 글내용
     image = models.TextField()  # 피드 이미지
-    email = models.EmailField(default='')  # 글쓴이
+    email = models.EmailField(default='')
 
 
 class Like(models.Model):  #게시물 좋아요

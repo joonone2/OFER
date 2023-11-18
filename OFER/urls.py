@@ -20,7 +20,7 @@ from django.urls import path, include
 
 from . import settings
 from .views import Sub
-from content.views import Main
+from content.views import Main, UploadFeed
 if settings.DEBUG:
     import debug_toolbar
 from .settings import MEDIA_ROOT, MEDIA_URL
@@ -32,6 +32,7 @@ urlpatterns = [
     path('main/', Main.as_view()),
     path('user/', include('user.urls')),
     path('content/', include('content.urls')),
+    path('content/upload', UploadFeed.as_view(), name='upload')
 
 ]
 

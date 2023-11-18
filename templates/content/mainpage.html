@@ -1,0 +1,722 @@
+*,
+:after,
+:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a,
+a:active,
+a:focus,
+a:hover {
+    text-decoration: none;
+}
+body, button, dd, div, dl, dt, fieldset, figcaption,
+figure, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol,
+p, select, table, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, .1);
+}
+li,  ol,  ul {
+    list-style: none;
+    padding: 0px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+    border-top: 1px solid #ebebeb;
+    word-break: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    border: 0;
+}
+input, textarea {
+    padding: 0;
+    outline: 0;
+    border: 0;
+    resize: none;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.view_data {
+    margin-top: 8px;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 20px;
+    font-size: 14px;
+    letter-spacing: -.21px;
+    letter-spacing: -.15px;
+    color: #1d85e6;
+    text-decoration: underline;
+}
+
+.layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(34, 34, 34, .5);
+    z-index: 1010;
+}
+
+.layer_container {
+    width: 450px;
+    height: 740px;
+    margin-bottom: 32px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 16px;
+    -webkit-box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
+}
+
+
+.btn {
+    display: -webkit-inline-box;
+    display: inline-flex;
+    cursor: pointer;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+    color: rgba(34,34,34,.8);
+    background-color: #fff;
+}
+
+.btn_layer_close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.btn_layer_close img {
+    width: 24px;
+    height: 24px;
+}
+.layer_btn .btn {
+    width: 120px;
+}
+
+.layer_btn{
+    padding: 24px 32px 32px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.layer_btn .btn+.btn{
+    margin-left: 8px;
+}
+.outlinegrey {
+    border: 1px solid #d3d3d3;
+    color: rgba(34,34,34,.8);
+}
+.outlinegrey:active {
+    border-color: #ebebeb;
+    background-color: #f4f4f4;
+    color: rgba(34,34,34,.5);
+}
+.solid {
+    background-color: #222;
+    color: #fff;
+}
+.medium {
+    padding: 0 18px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 14px;
+    letter-spacing: -.14px;
+}
+.solid.disabled, .solid:disabled {
+    background-color: #ebebeb;
+    color: #fff;
+    cursor: default;
+}
+
+.layer_header .title {
+    line-height: 22px;
+    padding: 18px 50px 20px;
+    min-height: 60px;
+    font-size: 18px;
+    letter-spacing: -.27px;
+    font-weight: 700;
+    letter-spacing: -.15px;
+    color: #fff;
+    text-align: center;
+    background-color: #222;
+}
+
+.layer_header .title {
+    height: 60px;
+}
+
+
+.layer_content{
+    max-height: 450px;
+    overflow-y: auto;
+    padding: 0 32px;
+    margin-bottom: 32px;
+}
+.top, .center{
+    /* display: flex; */
+    /* width: 100%; */
+    margin-top: 20px;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.top .user_bind, .center .user_bind{
+    width: 100%;
+    margin: 0;
+}
+/* .top .user_bind img{
+    width: 100%;
+} */
+.user_bind{
+    margin: 3%;
+}
+.top .delvery_bind.img{
+    border: 1px solid #222;
+    padding: 2%;
+}
+.input_item.half{
+    display: flex;
+}
+
+.input_box{
+    position: relative;
+    padding: 5px 0 7px;
+    width: 100%;
+}
+
+.input_item h3{
+    color: red;
+    border-bottom: 1px solid red;
+    width: 40px;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+
+
+.user_input{
+    /* margin-top: 13px; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+    height: inherit;
+}
+.layer_user .input_box{
+    padding-top: 16px;
+}
+.layer_user .input_box:first-of-type {
+    padding-top: 0;
+}
+.input_title{
+    /* font-size: 13px; */
+    letter-spacing: -.07px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 25px;
+}
+.input_item{
+    position: relative;
+    text-align: center;
+}
+
+.input_item .input_txt {
+    padding: 8px 0;
+    width: 100%;
+    font-size: 15px;
+    letter-spacing: -.15px;
+    line-height: 22px;
+    border: 0;
+    border-bottom: 1px solid #ebebeb;
+}
+/*view페이지 전용*/
+.input_item p{
+    padding: 8px 0;
+    width: 100%;
+    font-size: 15px;
+    letter-spacing: -.15px;
+    line-height: 22px;
+    border: 0;
+    margin: 0 auto;
+    /* border-bottom: 1px solid #ebebeb; */
+}
+/*파일 업로드 꾸미기*/
+
+img#previewImg{cursor:pointer;max-height:200px; max-width:100%;display:block;}
+
+.filebox {display:inline-block;margin:10px; text-align: center;}
+.filebox label {display: inline-block; padding: 4px 8px; margin-left:5px; color: #999; font-size: inherit; line-height: normal; width: 191px;
+    vertical-align: middle; border-radius: .25em; cursor: pointer; color: #fff; background-color: #222; border: 1px solid #222;}
+.filebox input[type="file"] {position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip:rect(0,0,0,0);border: 0;}
+.filebox .upload-name{display: inline-block; padding: 0.3em 0.4em; font-size: inherit; font-family: inherit; text-align:center;
+    line-height: normal; vertical-align: middle; background-color: #f5f5f5; border: 1px solid #ebebeb; border-bottom-color:
+     #e2e2e2; border-radius: .25em; -webkit-appearance: none; -moz-appearance: none; appearance: none; margin-bottom: 10px;}
+
+
+
+
+
+
+
+
+
+/* 게시글 */
+.card_box {
+    width: 100%;
+    font-size: 1.3rem;
+    /* margin: 0 1.4rem; */
+}
+
+.social_img_box.vertical {
+    padding-top: 134.77%;
+}
+.feed_card, .social_img_box {
+    position: relative;
+}
+.social_img_box {
+    overflow: hidden;
+    padding-top: 100%;
+    border-radius: 10px;
+}
+.social_img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* -webkit-transform: translate(-50%,-50%); */
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+img {
+    border: 0;
+    vertical-align: top;
+    user-select: none!important;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.card_detail {
+    padding: 8px 4px 0;
+}
+
+.user_box {
+    /* display: -webkit-box; */
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.img_profile {
+    width: 28px;
+    height: 28px;
+    border-radius: 100%;
+    border: 1px solid rgba(34,34,34,.1);
+    /* -o-object-fit: cover; */
+    object-fit: cover;
+}
+.user_name {
+    /* display: -webkit-inline-box; */
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -.33px;
+}
+.text_box, .user_name {
+    overflow: hidden;
+    /* -o-text-overflow: ellipsis; */
+    text-overflow: ellipsis;
+}
+.text_box {
+    margin-top: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 20px;
+    font-size: 14px;
+    letter-spacing: -.21px;
+    max-height: 40px;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.btn_box {
+    /* display: -webkit-box; */
+    display: flex;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    margin-top: 14px;
+    height: 20px;
+}
+
+.like, .comment {
+    font-size: 15px;
+    color: rgba(34,34,34,.5);
+}
+
+.btn {
+    display: inline-flex;
+    cursor: pointer;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* .social-like-gray-sm {
+    filter: opacity(0.5) drop-shadow(0 0 0 #ffffff);
+} */
+[class*=social-like-gray-sm], [class*=social-comment-gray-sm] {
+    width: 20px;
+    height: 20px;
+}
+.comment_count, .like_count {
+    padding-left: 3px;
+    color: rgba(34,34,34,.5);
+}
+span {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.comment {
+    height: 2rem;
+    margin-left: 1.5rem;
+    padding-left: 16px;
+}
+.product_list {
+    padding-top: 14px;
+    padding-left: 0;
+    margin: 0;
+}
+ul {
+    /* display: block; */
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.product_link {
+    /* display: -webkit-box; */
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 1px;
+}
+.product {
+    margin-right: 10px;
+    padding-top: 0!important;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background-color: rgb(241, 241, 234);
+    overflow: hidden;
+    position: relative;
+}
+.product .product_img {
+    width: 100%;
+    height: 100%;
+}
+.product_img {
+    height: 5rem;
+    background-color: salmon;
+    border-radius: 0.5rem;
+}
+.product_img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* height: 5rem; */
+    /* background-color: salmon; */
+    /* background-color: rgb(241, 241, 234); */
+    /* border-radius: 0.5rem; */
+    /* height: auto; */
+    transform: translate(-50%,-50%);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+}
+.picture {
+    /* display: -webkit-box; */
+    display: flex;
+}
+.image {
+    /* -o-object-fit: cover; */
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    image-rendering: auto;
+    vertical-align: top;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    border: 0;
+    user-select: none!important;
+    -webkit-user-drag: none;
+    background-color: rgb(241, 241, 234);
+}
+
+.product_name {
+    overflow: hidden;
+    /* -o-text-overflow: ellipsis; */
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    /* -webkit-line-clamp: 2; */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 13px;
+    letter-spacing: -.07px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin: 0;
+    padding: 0;
+}
+
+.price_box {
+    margin-top: 1px;
+    font-size: 13px;
+    align-items: center;
+}
+
+.img_profile {
+    width: 28px;
+    height: 28px;
+    border-radius: 100%;
+    border: 1px solid rgba(34,34,34,.1);
+    /* -o-object-fit: cover; */
+    object-fit: cover;
+}
+
+/* 아래 정보 */
+
+.info{
+    font-weight: bold;
+    /* margin: 0 auto; */
+    margin: 0 1.4rem;
+}
+.info_info{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.modifier{
+    width: 100%;
+    height:100%;
+    /* overflow-y: auto; */
+}
+
+
+<div class="layer_name layer lg" style="padding: 50px;">
+    <div class="layer_container">
+        <div class="modifier">
+            <a href="#" class="btn_layer_close">
+                <div>
+                    <img src="./src/images/close.png">
+                </div>
+            </a>
+
+            <div class="layer_header">
+                <h2 class="title">게시글 상세보기</h2>
+            </div>
+            <div class="layer_content">
+                <div class="top">
+                    <div class="user_bind">
+                        <div class="user_input">
+                            <div class="input_box ">
+
+                                <!-- 게시글 시작 -->
+                                <div  class="card_box">
+                                    <a href="#">
+                                        <div  class="social_img_box vertical">
+                                            <img
+                                                alt="소셜이미지" oncontextmenu="return false" ondragstart="return false"
+                                                onselectstart="return false"
+                                                src="https://kream-phinf.pstatic.net/MjAyMjEyMTNfMTQ1/MDAxNjcwOTM4MTY2NTU0.4CTHE4SKfswgtYOC585H6Gj0t7r6d6gXvjnzroNut-cg.HJEPgzcuSHrjeBSIev9VXJjQuCrpUSRP-896JJevVfMg.JPEG/p_46506b1204394e67b246abe8f3e37354.jpeg?type=m"
+                                                loading="lazy" class="social_img">
+                                        </div>
+                                    </a>
+                                    <div  class="card_detail"><a href="#">
+                                            <div  class="user_box"><img
+                                                    alt="사용자 프로필 이미지"
+                                                    src="https://kream-phinf.pstatic.net/MjAyMjA1MDVfMTg2/MDAxNjUxNzU2OTI2Mzk3.81EnEzktl5aWSHgGMiBK5zvtXHtN7KOSEL9SHREL9sog.RwBJPNvjFsyQgrRWdVCVHvWc3FqyPQquYZT3WJQBY9cg.JPEG/p_1262c8a2c6b541bcade95b62610fae20.jpeg?type=sl"
+                                                    class="img_profile">
+                                                <p  class="user_name">jooyjin_</p>
+                                            </div>
+                                            <p  class="text_box">고프코어로~⛰
+
+
+
+                                                #아크테릭스 #아크테릭스제타SL #아크테릭스자켓
+                                                #크림스타일</p>
+                                        </a>
+                                        <div  class="btn_box"><a href="#"></a><a
+                                                href="#" aria-label="좋아요" class="btn like">
+                                                <img src="../users/img/styleImg/like_icon.png" alt=""class="icon sprite-icons social-like-gray-sm">
+                                                <span  class="like_count">44</span></a><a
+                                                 href="#" aria-label="댓글" class="btn comment">
+                                                 <img src="../users/img/styleImg/comment_icon.png" alt=""class="social-comment-gray-sm icon sprite-icons">
+                                                 <span  class="comment_count">2</span></a></div>
+                                        <div >
+                                            <ul  class="product_list">
+                                                <li  class="product_item"><a
+                                                        href="/products/42703" class="product_link">
+                                                        <div  class="product"
+                                                            style="background-color: rgb(244, 244, 244);">
+                                                            <picture class="picture product_img">
+                                                                <source type="image/webp"
+                                                                    srcset="https://kream-phinf.pstatic.net/MjAyMTEwMDZfMTQ4/MDAxNjMzNTIyMDM5NzU5.eUn6XN8tURKKvgXvI4rctyH0A_zEw20vnbLKSNWVq50g.-UFhiggBfGucxWg9epEsFzH3Ib3_iX1Crk4wu1BXzOcg.JPEG/a_cf38ac4233bf4dc39d0bce472218b77f.jpg?type=m_webp">
+                                                                <source
+                                                                    srcset="https://kream-phinf.pstatic.net/MjAyMTEwMDZfMTQ4/MDAxNjMzNTIyMDM5NzU5.eUn6XN8tURKKvgXvI4rctyH0A_zEw20vnbLKSNWVq50g.-UFhiggBfGucxWg9epEsFzH3Ib3_iX1Crk4wu1BXzOcg.JPEG/a_cf38ac4233bf4dc39d0bce472218b77f.jpg?type=m">
+                                                                <img alt="Arc'teryx Zeta SL Jacket Black"
+                                                                    src="https://kream-phinf.pstatic.net/MjAyMTEwMDZfMTQ4/MDAxNjMzNTIyMDM5NzU5.eUn6XN8tURKKvgXvI4rctyH0A_zEw20vnbLKSNWVq50g.-UFhiggBfGucxWg9epEsFzH3Ib3_iX1Crk4wu1BXzOcg.JPEG/a_cf38ac4233bf4dc39d0bce472218b77f.jpg?type=m"
+                                                                    loading="lazy" class="image">
+                                                            </picture><!----><!----><!----><!---->
+                                                        </div>
+                                                        <div  class="product_desc">
+                                                            <p  class="product_name">Arc'teryx Zeta SL
+                                                                Jacket Black</p>
+                                                            <div  class="price_box"><span
+                                                                     class="amount">700,000</span><span
+                                                                     class="unit">원</span></div>
+                                                        </div>
+                                                    </a></li>
+                                                <li  class="product_item"><a
+                                                        href="/products/25672" class="product_link">
+                                                        <div  class="product"
+                                                            style="background-color: rgb(244, 244, 244);">
+                                                            <picture class="picture product_img">
+                                                                <source type="image/webp"
+                                                                    srcset="https://kream-phinf.pstatic.net/MjAyMDEwMjJfMjY0/MDAxNjAzMzM0MDAyMjkz.wFUvINtdW_HtWw_dT93iON6PHbdGH6z_2MwUIyl3Uhog.h2DQIPhdatdIih9yvHtenOjPoS825NR_w0Fbx8ZoVZQg.PNG/p_25672_0_001365ad1ca1402ea03e6b9e0f6ae500.png?type=m_webp">
+                                                                <source
+                                                                    srcset="https://kream-phinf.pstatic.net/MjAyMDEwMjJfMjY0/MDAxNjAzMzM0MDAyMjkz.wFUvINtdW_HtWw_dT93iON6PHbdGH6z_2MwUIyl3Uhog.h2DQIPhdatdIih9yvHtenOjPoS825NR_w0Fbx8ZoVZQg.PNG/p_25672_0_001365ad1ca1402ea03e6b9e0f6ae500.png?type=m">
+                                                                <img alt="Salomon XT-6 ADV White"
+                                                                    src="https://kream-phinf.pstatic.net/MjAyMDEwMjJfMjY0/MDAxNjAzMzM0MDAyMjkz.wFUvINtdW_HtWw_dT93iON6PHbdGH6z_2MwUIyl3Uhog.h2DQIPhdatdIih9yvHtenOjPoS825NR_w0Fbx8ZoVZQg.PNG/p_25672_0_001365ad1ca1402ea03e6b9e0f6ae500.png?type=m"
+                                                                    loading="lazy" class="image">
+                                                            </picture><!----><!----><!----><!---->
+                                                        </div>
+                                                        <div  class="product_desc">
+                                                            <p  class="product_name">Salomon XT-6 ADV
+                                                                White</p>
+                                                            <div  class="price_box"><span
+                                                                     class="amount">204,000</span><span
+                                                                     class="unit">원</span></div>
+                                                        </div>
+                                                    </a></li>
+                                                <li  class="product_item"><a
+                                                        href="/products/74267" class="product_link">
+                                                        <div  class="product"
+                                                            style="background-color: rgb(241, 241, 234);">
+                                                            <picture class="picture product_img">
+                                                                <source type="image/webp"
+                                                                    srcset="https://kream-phinf.pstatic.net/MjAyMjA4MThfMjI5/MDAxNjYwNzk3NTE1OTgx.PIl1nZ-_EhAoytfkTem0L7vuNWvDise9DI1cPUSrK7Ag.xtPv15NnoMHGmygFr_n-5I_dt4UhWhK4IlPcmPHPaoYg.PNG/a_33ff4989dff04f66b485b0933136bb4e.png?type=m_webp">
+                                                                <source
+                                                                    srcset="https://kream-phinf.pstatic.net/MjAyMjA4MThfMjI5/MDAxNjYwNzk3NTE1OTgx.PIl1nZ-_EhAoytfkTem0L7vuNWvDise9DI1cPUSrK7Ag.xtPv15NnoMHGmygFr_n-5I_dt4UhWhK4IlPcmPHPaoYg.PNG/a_33ff4989dff04f66b485b0933136bb4e.png?type=m">
+                                                                <img alt="Adidas Superstar Golden Beige"
+                                                                    src="https://kream-phinf.pstatic.net/MjAyMjA4MThfMjI5/MDAxNjYwNzk3NTE1OTgx.PIl1nZ-_EhAoytfkTem0L7vuNWvDise9DI1cPUSrK7Ag.xtPv15NnoMHGmygFr_n-5I_dt4UhWhK4IlPcmPHPaoYg.PNG/a_33ff4989dff04f66b485b0933136bb4e.png?type=m"
+                                                                    loading="lazy" class="image">
+                                                            </picture><!----><!----><!----><!---->
+                                                        </div>
+                                                        <div  class="product_desc">
+                                                            <p  class="product_name">Adidas Superstar
+                                                                Golden Beige</p>
+                                                            <div  class="price_box"><span
+                                                                     class="amount">112,000</span><span
+                                                                     class="unit">원</span></div>
+                                                        </div>
+                                                    </a></li>
+                                            </ul><!---->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 게시글 끝 -->
+
+                                <!-- 작성자 아이디 -->
+                                <div class="info">
+                                    <p class="info_title">
+                                        작성자 아이디
+                                    </p>
+                                    <p class="info_info">
+                                        zellee
+                                    </p>
+                                </div>
+                                <!-- 작성자 아이디 끝 -->
+
+                                <!-- 등록 날짜 -->
+                                <div class="info">
+                                    <p class="info_title">
+                                        등록 날짜
+                                    </p>
+                                    <p class="info_info">
+                                        2022.12.20.
+                                    </p>
+                                </div>
+                                <!-- 등록 날짜 끝 -->
+
+                                <!-- 수정 날짜 -->
+                                <div class="info">
+                                    <p class="info_title">
+                                        수정 날짜
+                                    </p>
+                                    <p class="info_info">
+                                        2022.12.25.
+                                    </p>
+                                </div>
+                                <!-- 수정 날짜  끝 -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layer_btn">
+                    <a href="#" class="btn btn_save solid medium">삭제</a>
+                    <a href="#" class="btn btn_save solid medium "> 뒤로 </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
