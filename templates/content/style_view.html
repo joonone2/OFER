@@ -319,21 +319,21 @@ img#previewImg{cursor:pointer;max-height:200px; max-width:100%;display:block;}
     margin-top: -30px;
 }
 
-.social_img_box.vertical {
+.social_img_box .vertical {
     padding-top: 134.77%;
-    margin-top: -840px;
+    margin-top: -800px;
 }
 .feed_card, .social_img_box {
     position: relative;
 }
 .social_img_box {
     overflow: hidden;
-    padding-top: 30%;
+    padding-top: 500px;
     border-radius: 10px;
 }
 .social_img {
     position: absolute;
-    top: 80%;
+    top: 30%;
     left: 45%;
     /* -webkit-transform: translate(-50%,-50%); */
     transform: translate(-50%,-50%);
@@ -1213,17 +1213,17 @@ footer #sns_and_button #footer_button{
         <div style="margin-top: 160px;">
 
             <!-- 게사글 시작 -->
-
+            {% load static %}
             <div  class="card_box">
                                             <div class="user_box">
 
                                                     <img
                                                         alt="사용자 프로필 이미지"
-                                                        src="https://images.khan.co.kr/article/2022/10/11/news-p.v1.20221011.bc1e24d8ef5c4b5f8a8ca9aa9bea247d_Z1.jpg"
+                                                        src="{% get_media_prefix %}{{ user.profile_image }}"
                                                         class="img_profile" width="50" height="20">
                                                 <div class="user_upload">
                                                 <div class="user_name">
-                                                    <a  class="user_name">ophen28</a>
+                                                    <a  class="user_name">{{ user.nickname }}</a>
                                                 </div>
                                                 <div class="upload_time">
                                                     <a  style="  " class="upload_time">6시간 전</a>
@@ -1238,7 +1238,7 @@ footer #sns_and_button #footer_button{
                                             <img
                                                 alt="이미지" oncontextmenu="return false" ondragstart="return false"
                                                 onselectstart="return false"
-                                                src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F998283345E360EAC20"
+                                                src="{% get_media_prefix %}{{ feed.image }}"
                                                 loading="lazy" class="social_img" width="800" height="3
                                                 0">
                                         </div>
@@ -1262,7 +1262,7 @@ footer #sns_and_button #footer_button{
 
                                          <div class="like"> 좋아요 <a class="like_count">44</a> 개</div>
 
-                                        <p  class="text_box">나름 쌀쌀해졌다..... 목요일 출근 룩><</p>
+                                        <p  class="text_box">{{ feed.content }}</p>
                                          <p class="tag_text_box"> <a href="">#겨울아우터</a> <a href="">#데일리룩</a> <a href="">#출근룩</a></p>
                                         </a>
 

@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Feed(models.Model):  # 게시물
     content = models.TextField()    # 글내용
-    image = models.TextField()  # 피드 이미지
+    image = models.ImageField(upload_to='feed_images/')  # 피드 이미지
     email = models.EmailField(default='')
 
 

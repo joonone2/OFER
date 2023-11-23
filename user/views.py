@@ -97,3 +97,37 @@ class UploadProfile(APIView):
         return Response(status=200)
 
 
+class DeleteProfile(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+
+
+        user = User.objects.filter(email=email).first()
+
+       # user.profile_image = /media/default_profile.jpg
+        user.save()
+
+        return Response(status=200)
+
+
+class LogOut(APIView):
+    def get(self, request):
+        request.session.flush()
+        return render(request, "user/login.html")
+
+class ChangeName(APIView):
+    def post(self, request):
+
+        # 일단 파일 불러와
+
+        name = request.data.get('name')
+        email = request.data.get('email')
+
+
+        user = User.objects.filter(email=email).first()
+
+        user.name = name
+        user.save()
+
+        return Response(status=200)
+

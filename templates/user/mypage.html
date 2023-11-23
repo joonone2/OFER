@@ -2143,25 +2143,25 @@ body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h
                                                 <a href="/my/wish" class="top_link"> 관심상품 </a>
                                             </li>
                                             <li class="top_item">
-                                                <a href="/my" class="top_link"> 마이페이지 </a>
+                                                <a href="/content/profile" class="top_link"> 마이페이지 </a>
                                             </li>
                                             <li class="top_item" style="display: none;">
                                                 <a href="/login" class="top_link"> 로그인 </a>
                                             </li>
                                             <li class="top_item">
-                                                <a href="/" class="top_link"> 로그아웃 </a>
+                                                <a href="/user/logout" class="top_link"> 로그아웃 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="header_main">
                                     <div class="main_inner" style="font-family: 'Nanum Gothic';font-size: 35px; font-weight: bold">
-                                        OFER
+                                        <a href="/main">OFER</a>
                                         <div class="gnb_area">
                                             <nav class="gnb">
                                                 <ul class="gnb_list">
                                                     <li class="gnb_item gnb_on">
-                                                        <a href="/social/trending" class="gnb_link"> STYLE </a>
+                                                        <a href="/main" class="gnb_link"> STYLE </a>
                                                     </li>
                                                     <li class="gnb_item">
                                                         <a href="#" class="gnb_link"> SHOP </a>
@@ -2271,8 +2271,8 @@ body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h
                         <h4 class="group_title">로그인 정보</h4>
                         <div class="unit">
                             <h5 class="title">이메일 주소</h5>
-                            <p class="desc email">{{ user.email }}</p><button type="button"
-                                class="btn btn_modify outlinegrey small"> 변경 </button>
+                            <p class="desc email">{{ user.email }}</p><button type="button" onclick="pop_name()"
+                                class="btn btn_modify outlinegrey small" > 변경 </button>
                         </div>
                         <div class="modify" style="display: none;">
                             <div class="input_box">
@@ -2323,12 +2323,12 @@ body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h
                             <div class="input_box" id="name_input_box">
                                 <h6 class="input_title">새로운 이름</h6>
                                 <div class="input_item"><input type="text" id="name_input" placeholder="고객님의 이름" autocomplete="off"
-                                        class="input_txt" id=""></div>
+                                        class="input_txt"></div>
                                 <p class="input_error" id="name_input_error"></p>
                             </div>
                             <div class="modify_btn_box"><button type="button" class="btn outlinegrey medium close_name "
                                     slot="button"> 취소 </button><button type="button"
-                                    class="btn solid medium disabled close_name" id="name_save"slot="button" disabled="true"> 저장 </button></div>
+                                    class="btn solid medium disabled close_name" id="name_save"slot="button" disabled="true" onclick="name_change()"> 저장 </button></div>
                         </div>
 
 
@@ -2428,7 +2428,59 @@ closename.forEach((target) => {
         });
     }
 
+    function name_change() {
+
+        let email = "{{ user.email }}";
+        let name = document.getElementById("name_input").value;
+
+        let fd = new FormData();
+
+
+        fd.append('email', email);
+        fd.append('name', name);
+
+        $.ajax({
+            url: "/user/profile/changename",
+            data: fd,
+            method: "post",
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log("성공");
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+                location.replace("/user/mypage");
+            }
+        });
+    }
+
     function delete_img(){
+    let email = "{{ user.email }}";
+    let fd = new FormData();
+    fd.append('email', email);
+
+    $.ajax({
+            url: "/user/profile/delete",
+            data: fd,
+            method: "post",
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log("성공");
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+                location.replace("/user/mypage");
+            }
+        });
+
     const pi = document.getElementById('profile_img');
     console.log(pi.src);
     pi.setAttribute('src', '../../img/profile.png');

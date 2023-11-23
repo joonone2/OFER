@@ -17,8 +17,10 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!--axios cdn -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../../css/social/style.css">
+    <link rel="stylesheet" href="style.css">
+
 
     <!-- <link rel="stylesheet" href="../../css/social/profile.css"> -->
 
@@ -27,6 +29,10 @@
 
 </head>
 <style>
+
+
+
+
     @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
     .ht_text{
     margin-left: 24px;
@@ -1558,9 +1564,21 @@ input {
 .nanumgothic * {
     font-family: 'Nanum Gothic', sans-serif;}
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css" rel="stylesheet">
+.up_box {
+            width: 150px;
+            height: 150px;
+            border-radius: 70%;
+            overflow: hidden;
+        }
+  .up_profile {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 </style>
 
 <body>
+{% load static %}
     <div id="__nuxt">
         <div id="__layout">
             <div tabindex="0" class="wrap window_os lg">
@@ -1589,7 +1607,7 @@ input {
                                                 <a href="/login" class="top_link"> 로그인 </a>
                                             </li>
                                             <li class="top_item">
-                                                <a href="/" class="top_link"> 로그아웃 </a>
+                                                <a href="/user/logout" class="top_link"> 로그아웃 </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -1601,23 +1619,23 @@ input {
                                             <nav class="gnb">
                                                 <ul class="gnb_list">
                                                     <li class="gnb_item gnb_on">
-                                                        <a href="/social/trending" class="gnb_link"> STYLE </a>
+                                                        <a href="/main" class="gnb_link"> STYLE </a>
                                                     </li>
+
                                                     <li class="gnb_item">
-                                                        <a href="#" class="gnb_link"> SHOP </a>
-                                                    </li>
-                                                    <li class="gnb_item">
-                                                        <a href="/about" target="_blank" class="gnb_link"> ABOUT </a>
+                                                        <a href="/content/upload" class="gnb_link" > 글쓰기 </a>
+
                                                     </li>
                                                 </ul>
                                             </nav>
-                                            <div class="search_btn_box">
-                                                <a aria-label="검색" href="#" class="btn_search">
-                                                    <img src="https://cdn-icons-png.flaticon.com/128/54/54481.png"
-                                                        class="nav-search icon sprite-icons">
-                                                </a>
-                                            </div>
-                                        </div>
+                                            <div class="dropdown">
+                                                <a href="#" role="button" id="dropdownMenuLink"
+                                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <div class="up_box" style="width: 25px; height: 25px">
+
+                                                        <img class="up_profile" src="{% get_media_prefix %}{{ profile_image }}" style="border-radius: 50%" onclick="location.href='/content/profile'">
+                                                    </div>
+
                                         <div style="display: none;">
                                             <div class="search_area" value="">
                                                 <div class="search">
@@ -1763,28 +1781,28 @@ input {
                                     </a>
                                 </div>
 
-  -->               <div class="social_feeds">
+  --><div class="social_feeds">
     <div transition-duration="0" item-selector=".item" gutter=".gutter_item"
         horizontal-order="true" class="masonry_posts"
         style="position: relative; height: 4956px;">
         <div class="gutter_item"></div>
 
+
         <div class="container">
             <div class="row">
                 {% for feed in feeds %}
+
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="feed_card item vertical" style="position: absolute; left: 0px; top: 0px;">
-                            <a href="#">{{ a }}
+                            <a href="#">
                                 <div class="card_box">
                                     <div class="social_img_box vertical">
                                                 <picture class="picture social_img">
-                                                    <source type="image/webp"
-                                                        srcset="{{ feed.image }}">
-                                                    <source
-                                                        srcset="https://kream-phinf.pstatic.net/MjAyMjEyMjhfMTc4/MDAxNjcyMTk0MjY2Njk3.ID4oXLjphKCSG17vPHX7Ku_DC93mQrR7M2-c9TgWXvwg.75cNsQCfe4XQZ9LwxxrRRQce7sJbNxiiYTGdKSesTxIg.JPEG/p_bee3aabc37b04e80875a1a1f558b8421.jpeg?type=m">
+
                                                     <img alt="소셜이미지"
-                                                        src="{{ feed.image }}"
-                                                        loading="auto" class="image">
+                                                        src="{% get_media_prefix %}{{ feed.image }}"
+                                                        loading="auto" class="imagess"
+                                                        >
                                                 </picture>
                                             </div>
 
@@ -1805,7 +1823,7 @@ input {
                                                             class="icon sprite-icons social-like-gray-sm">
                                                         <span class="like_count">128</span></span>
                                                 </div>
-                                                <p class="text_box">삿포로</p>
+                                                <p class="text_box">{{ feed.content }}</p>
                                             </div>
                                 </div>
                             </a>
@@ -1835,9 +1853,7 @@ input {
 
                 <!-- 푸터 끝 -->
             </div>
-        </div>
 
-    </div>
 
     <!-- <script src="../../js/style/profile.js"></script> -->
 </body>
