@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="style_header.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Icon -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+            rel="stylesheet">
 </head>
 <style>
    *,
@@ -338,9 +343,10 @@ img#previewImg{cursor:pointer;max-height:200px; max-width:100%;display:block;}
     /* -webkit-transform: translate(-50%,-50%); */
     transform: translate(-50%,-50%);
     margin-left: -80px;
-    height: 50%;
+    height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
+
 }
 img {
     border: 0;
@@ -1162,6 +1168,19 @@ footer .footer_flex_box4 #footer_left_box4{
 footer #sns_and_button #footer_button{
     display: none;
 }
+
+.upload_reply:hover {
+    background: black;
+    color: white;
+}
+
+.upload_reply{
+    width: 35px; height:25px;color: black; font-weight: bold; font-size: 15px; background: white;
+                                                        text-align: center; cursor: pointer; border-radius: 10px;
+}
+
+
+
 </style>
 <body>
   <div id="__nuxt">
@@ -1175,18 +1194,18 @@ footer #sns_and_button #footer_button{
               <div class="top_inner">
 
                   <ul>
-                      <li style="font-size: 30px; font-weight: bold;">OFER</li>
+                      <li style="font-size: 30px; font-weight: bold;">
+                          <a href="/main">OFER</a>
+                      </li>
                   </ul>
 
                 <ul class="top_list">
 
 
                   <li class="top_item">
-                    <a style="font-size: 15px; href="/my" class="top_link"> 마이페이지 </a>
+                    <a style="font-size: 15px;" href="/content/profile" class="top_link"> 마이페이지 </a>
                   </li>
-                  <li class="top_item" >
-                    <a style="font-size: 15px; href="/login" class="top_link"> 로그인 </a>
-                  </li>
+
                   <li class="top_item">
                     <a style="font-size: 15px; href="/" class="top_link"> 로그아웃 </a>
                   </li>
@@ -1219,14 +1238,14 @@ footer #sns_and_button #footer_button{
 
                                                     <img
                                                         alt="사용자 프로필 이미지"
-                                                        src="{% get_media_prefix %}{{ user.profile_image }}"
+                                                        src="{% get_media_prefix %}{{ user_content.profile_image }}"
                                                         class="img_profile" width="50" height="20">
                                                 <div class="user_upload">
                                                 <div class="user_name">
-                                                    <a  class="user_name">{{ user.nickname }}</a>
+                                                    <a  class="user_name">{{ user_content.nickname }}</a>
                                                 </div>
                                                 <div class="upload_time">
-                                                    <a  style="  " class="upload_time">6시간 전</a>
+                                                    <a  style="  " class="upload_time">{{ feed.date_time }}</a>
                                                 </div>
                                                 </div>
 
@@ -1240,36 +1259,77 @@ footer #sns_and_button #footer_button{
                                                 onselectstart="return false"
                                                 src="{% get_media_prefix %}{{ feed.image }}"
                                                 loading="lazy" class="social_img" width="800" height="3
-                                                0">
+                                                00">
                                         </div>
                                     </a>
                                     <div  class="card_detail"><a href="#">
 
-                                         <div  class="btn_box"><a href="#"></a>
-                                             <button class="btn_like">
-                                             <a href="#" aria-label="좋아요" class="btn_like">
-                                        <img src="https://media.istockphoto.com/id/1204388520/vector/editable-stroke-black-heart-line-icon-isolated-on-a-white-background.jpg?s=612x612&w=0&k=20&c=bRDA-0aaLvhzka4W0TnCidor3QR61J-eD8Q0LnpnLJ0="
+                                         <div class="btn_box"><a href="#"></a>
+                                             <button class="btn_like" style="width: 50px; height: 50px">
+                                             <!--<a href="#" aria-label="좋아요" class="btn_like">
+                                                 <img src="https://media.istockphoto.com/id/1204388520/vector/editable-stroke-black-heart-line-icon-isolated-on-a-white-background.jpg?s=612x612&w=0&k=20&c=bRDA-0aaLvhzka4W0TnCidor3QR61J-eD8Q0LnpnLJ0="
                                              alt="이미지 설명" width="50" height="50">
-                                               </a>
+                                               </a> -->
+                                            <span id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}"
+                                                class="favorite material-icons-outlined"
+                                                    style="color: red;cursor: pointer">{% if feed.is_liked %}
+                                            favorite{% else %}favorite_border{% endif %}</span>
+
                                              </button>
+                                         <!--
                                              <button class="btn_comment">
                                             <a href="#" aria-label="댓글" class="btn_comment">
                                                  <img src="https://media.istockphoto.com/id/1384820815/ko/%EB%B2%A1%ED%84%B0/%ED%94%BC%EB%93%9C%EB%B0%B1-%EC%BB%AC%EB%A0%89%EC%85%98%EC%9D%98-%EB%8C%93%EA%B8%80-%EC%95%84%EC%9D%B4%EC%BD%98%EC%9E%85%EB%8B%88%EB%8B%A4-%ED%9D%B0%EC%83%89-%EB%B0%B0%EA%B2%BD%EC%97%90-%EA%B2%A9%EB%A6%AC-%EB%90%9C-%EC%96%87%EC%9D%80-%EC%84%A0%ED%98%95-%EC%A3%BC%EC%84%9D-%EC%A3%BC%EC%84%9D-%ED%86%B5%EC%8B%A0-%EC%9C%A4%EA%B3%BD-%EC%95%84%EC%9D%B4%EC%BD%98-%EB%9D%BC%EC%9D%B8-%EB%B2%A1%ED%84%B0-%EC%A3%BC%EC%84%9D-%EA%B8%B0%ED%98%B8-%EC%9B%B9-%EB%B0%8F-%EB%AA%A8%EB%B0%94%EC%9D%BC-%EA%B8%B0%ED%98%B8.jpg?s=612x612&w=0&k=20&c=XUV5f9CrQFJNZIgxr2lWTWqbh41_n8TBTmC_7S5zn4I="
                                              alt="이미지 설명" width="42" height="42">
                                                 </a>
                                              </button>
+                                         -->
+
+                                            <button class="btn_comment">
+                                            <span id="bookmark_{{ feed.id }}" feed_id="{{ feed.id }}" class="bookmark material-icons-outlined" style="cursor: pointer">
+                                                {% if feed.is_marked %}
+                                                    bookmark
+                                                {% else %}
+                                                    bookmark_border
+                                                {% endif %}
+                                             </span>
+                                            </button>
                                         </div>
 
-                                         <div class="like"> 좋아요 <a class="like_count">44</a> 개</div>
+                                         <div class="like"> 좋아요 <a class="like_count">{{ feed.like_count }}</a> 개</div>
 
                                         <p  class="text_box">{{ feed.content }}</p>
                                          <p class="tag_text_box"> <a href="">#겨울아우터</a> <a href="">#데일리룩</a> <a href="">#출근룩</a></p>
                                         </a>
+                                        <div style="display:flex;flex-direction: row;align-items: center; border-top: solid 1px grey; width: 500px">
+                                            <input id="reply_{{ feed.id }}" type="text" class="form-control"
+                                                style="box-shadow: none; border: none; outline: none" placeholder="댓글 달기..">
+                                            <div feed_id="{{ feed.id }}" class="upload_reply"
+                                                >게시</div>
+                                        </div>
 
 
+                                        <div class="comment"> 댓글 <a class="comment_count">{{ feed.reply_list|length }}</a> 개</div>
 
-                                        <div class="comment"> 댓글 <a class="comment_count">2</a> 개</div>
+                                        {% for reply in feed.reply_list %}
+                                        <div class="comment_box">
+                                           <a href="" class="profile_unit_link">
+                                              <img src="{% get_media_prefix %}{{ reply.user_image }}" class="profile_unit_img">
 
+                                           </a>
+                                            <div class="comment_detail">
+                                                <div class="main">
+                                                    <a href="" class="user_name">{{ reply.nickname }}</a>
+                                                    <a class="comment_txt">{{ reply.reply_content }}</a>
+                                                </div>
+                                                <div class="sub">
+                                                    <a class="comment_upload_time">2시간전</a>
+                                                    <a href="" class="reply"> 답글쓰기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <!--
                                         <div class="comment_box">
                                            <a href="" class="profile_unit_link">
                                               <img src="https://static.inews24.com/v1/81573360879221.jpg" class="profile_unit_img">
@@ -1286,6 +1346,7 @@ footer #sns_and_button #footer_button{
                                                 </div>
                                             </div>
                                         </div>
+                                        -->
 
                                     </div>
                                 </div>
@@ -1307,7 +1368,109 @@ footer #sns_and_button #footer_button{
 
   </div>
 
+<script>
+
+    $(".bookmark").click(function (event) {
+        let feed_id = event.target.attributes.getNamedItem('feed_id').value;
+        let bookmark_id = event.target.id;
+        let bookmark_text = $.trim($('#' + bookmark_id).html());
+        if (bookmark_text == 'bookmark') {
+            $('#' + bookmark_id).html('bookmark_border');
+        } else {
+            $('#' + bookmark_id).html('bookmark');
+        }
+
+        $.ajax({
+            url: "/content/bookmark",
+            data: {
+                feed_id: feed_id,
+                bookmark_text: bookmark_text
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+                location.reload();
+            }
+        });
+    });
+
+    $(".favorite").click(function (event) {
+        let feed_id = event.target.attributes.getNamedItem('feed_id').value;
+        let favorite_id = event.target.id;
+        console.log(favorite_id);
+        let favorite_text = $.trim($('#' + favorite_id).html());
+        console.log(favorite_text);
+        if (favorite_text == 'favorite') {
+            $('#' + favorite_id).html('favorite_border');
+        } else {
+            $('#' + favorite_id).html('favorite');
+        }
+
+        $.ajax({
+            url: "/content/like",
+            data: {
+                feed_id: feed_id,
+                favorite_text: favorite_text
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+                location.reload();
+            }
+        });
+    });
+
+    $(".upload_reply").click(function (event) {
+        console.log(event.target.attributes.getNamedItem('feed_id').value);
+        let feed_id = event.target.attributes.getNamedItem('feed_id').value;
+        let reply_id = 'reply_' + feed_id;
+        let reply_content = $('#' + reply_id).val();
+
+        if (reply_content.length <= 0) {
+            alert("댓글을 입력하세요");
+            return 0;
+        }
+
+        $.ajax({
+            url: "/content/reply",
+            data: {
+                feed_id: feed_id,
+                reply_content: reply_content
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+                alert("댓글 성공");
+                $("#reply_list_" + feed_id).append("<div style='margin: 0 20px;text-align: left;font-size: 14px'><b>{{ user.nickname }}</b> " + reply_content + "</div>")
+                {#location.replace('/main');#}
+                location.reload();
+
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+                $('#' + reply_id).val('');
+            }
+        });
+    });
+</script>
 
 </body>
+
+
 
 </html>

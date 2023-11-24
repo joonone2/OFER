@@ -1633,7 +1633,7 @@ input {
                                                    data-bs-toggle="dropdown" aria-expanded="false">
                                                     <div class="up_box" style="width: 25px; height: 25px">
 
-                                                        <img class="up_profile" src="{% get_media_prefix %}{{ profile_image }}" style="border-radius: 50%" onclick="location.href='/content/profile'">
+                                                        <img class="up_profile" src="{% get_media_prefix %}{{ user_connect.profile_image }}" style="border-radius: 50%" onclick="location.href='/content/profile'">
                                                     </div>
 
                                         <div style="display: none;">
@@ -1699,10 +1699,15 @@ input {
                             </div>
                             <div class="social_header">
                                 <div class="style_tab_list">
+                                    <!--
                                     <a href="#" class="tab_item tab_on"> 인기 </a>
                                     <a href="#" class="tab_item"> 최신 </a>
                                     <a href="#" class="tab_item"> 팔로잉 </a>
                                     <a href="#" class="tab_item"> 내스타일 </a>
+                                    -->
+                                    <div id="button_feed_list" style="cursor: pointer;" class="tab_item">인기</div>
+                                    <div id="button_feed_like_list" style="cursor: pointer;" class="tab_item">최신</div>
+                                    <div id="button_feed_bookmark_list" style="cursor: pointer;" class="tab_item">내스타일</div>
                                 </div>
                             </div>
                         </div>
@@ -1793,7 +1798,7 @@ input {
                 {% for feed in feeds %}
 
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <div class="feed_card item vertical" style="position: absolute; left: 0px; top: 0px;">
+                        <div class="feed_card item vertical" style="position: absolute; left: 0px; top: 0px;"  onclick="styleView('{{ feed.id }}')">
                             <a href="#">
                                 <div class="card_box">
                                     <div class="social_img_box vertical">
@@ -1859,6 +1864,34 @@ input {
 </body>
 
 <script>
+
+    function styleView(feed_id) {
+
+    let email = "{{ user.email }}";
+    let id = feed_id;
+    let fd = new FormData();
+    let url = `/content/styleview?id=${id}&email=${email}`;
+    console.log(id)
+    console.log(email)
+
+
+    $.ajax({
+        url: url,
+        method: "get",
+
+        success: function (data) {
+            console.log("성공");
+             window.location.href = url;
+        },
+        error: function (request, status, error) {
+            console.log("에러");
+        },
+        complete: function () {
+            console.log("완료");
+            //location.replace("/content/styleview");
+        }
+    });
+}
 
     // 좋아요 버튼
     $(document).on('click', '.like_img', function () {
