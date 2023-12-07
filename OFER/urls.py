@@ -25,9 +25,11 @@ if settings.DEBUG:
     import debug_toolbar
 from .settings import MEDIA_ROOT, MEDIA_URL
 from django.conf.urls.static import static
+from content.views import Main
 
 
 urlpatterns = [
+    path('', Main.as_view(), name='main_page'),
     path('admin/', admin.site.urls),
     path('main/', Main.as_view()),
     path('user/', include('user.urls')),

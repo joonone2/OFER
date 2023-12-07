@@ -6,6 +6,7 @@ class Feed(models.Model):  # 게시물
     image = models.ImageField(upload_to='feed_images/')  # 피드 이미지
     email = models.EmailField(default='')  #글쓴이
     date_time = models.DateTimeField(auto_now_add=True)
+    category = models.CharField(max_length=100)  # 카테고리 필드 추가, 최대 길이 조정 가능
 
 
 class Like(models.Model):  #게시물 좋아요

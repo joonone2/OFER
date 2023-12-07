@@ -1243,6 +1243,14 @@ footer #sns_and_button #footer_button{
                                                 <div class="user_upload">
                                                 <div class="user_name">
                                                     <a  class="user_name">{{ user_content.nickname }}</a>
+                                                    <button class="btn_delete" >
+                                            <span id="delete_{{ feed.id }}" feed_id="{{ feed.id }}" class="deletefeed material-icons-outlined" style="cursor: pointer">
+                                                {% if email == feed.email %}
+                                                    delete
+                                                {% endif %}
+                                             </span>
+                                            </button>
+
                                                 </div>
                                                 <div class="upload_time">
                                                     <a  style="  " class="upload_time">{{ feed.date_time }}</a>
@@ -1266,10 +1274,6 @@ footer #sns_and_button #footer_button{
 
                                          <div class="btn_box"><a href="#"></a>
                                              <button class="btn_like" style="width: 50px; height: 50px">
-                                             <!--<a href="#" aria-label="좋아요" class="btn_like">
-                                                 <img src="https://media.istockphoto.com/id/1204388520/vector/editable-stroke-black-heart-line-icon-isolated-on-a-white-background.jpg?s=612x612&w=0&k=20&c=bRDA-0aaLvhzka4W0TnCidor3QR61J-eD8Q0LnpnLJ0="
-                                             alt="이미지 설명" width="50" height="50">
-                                               </a> -->
                                             <span id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}"
                                                 class="favorite material-icons-outlined"
                                                     style="color: red;cursor: pointer">{% if feed.is_liked %}
@@ -1285,7 +1289,7 @@ footer #sns_and_button #footer_button{
                                              </button>
                                          -->
 
-                                            <button class="btn_comment">
+                                            <button class="btn_bookmark">
                                             <span id="bookmark_{{ feed.id }}" feed_id="{{ feed.id }}" class="bookmark material-icons-outlined" style="cursor: pointer">
                                                 {% if feed.is_marked %}
                                                     bookmark
@@ -1299,8 +1303,8 @@ footer #sns_and_button #footer_button{
                                          <div class="like"> 좋아요 <a class="like_count">{{ feed.like_count }}</a> 개</div>
 
                                         <p  class="text_box">{{ feed.content }}</p>
-                                         <p class="tag_text_box"> <a href="">#겨울아우터</a> <a href="">#데일리룩</a> <a href="">#출근룩</a></p>
-                                        </a>
+                                         <p class="tag_text_box" style="cursor: pointer"> #{{ feed.category }}</p>
+                                        <br>
                                         <div style="display:flex;flex-direction: row;align-items: center; border-top: solid 1px grey; width: 500px">
                                             <input id="reply_{{ feed.id }}" type="text" class="form-control"
                                                 style="box-shadow: none; border: none; outline: none" placeholder="댓글 달기..">
@@ -1321,6 +1325,13 @@ footer #sns_and_button #footer_button{
                                                 <div class="main">
                                                     <a href="" class="user_name">{{ reply.nickname }}</a>
                                                     <a class="comment_txt">{{ reply.reply_content }}</a>
+                                                    <button class="btn_delete" >
+                                            <span id="{{ reply.id }}" feed_id="{{ feed.id }}" class="deletereply material-icons-outlined" style="cursor: pointer">
+                                                {% if email == reply.email %}
+                                                    delete
+                                                {% endif %}
+                                             </span>
+                                            </button>
                                                 </div>
                                                 <div class="sub">
                                                     <a class="comment_upload_time">2시간전</a>
@@ -1467,6 +1478,73 @@ footer #sns_and_button #footer_button{
             }
         });
     });
+
+    $(".deletefeed").click(function (event) {
+        let feed_id = event.target.attributes.getNamedItem('feed_id').value;
+        let delete_id = event.target.id;
+        console.log(delete_id);
+        let delete_text = $.trim($('#' + delete_id).html());
+        console.log(delete_text);
+
+
+        $.ajax({
+            url: "/content/deletefeed",
+            data: {
+                feed_id: feed_id,
+                delete_text:delete_text
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+                //location.reload();
+                location.href = '/main';
+            }
+        });
+    });
+
+
+    $(".deletereply").click(function (event) {
+        let feed_id = event.target.attributes.getNamedItem('feed_id').value;
+        let delete_id = event.target.id;
+        console.log("콘솔 삭제 댓글");
+        console.log(delete_id);
+
+
+
+        $.ajax({
+            url: "/content/deletereply",
+            data: {
+                feed_id: feed_id,
+                delete_id : delete_id
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+                location.reload();
+            }
+        });
+    });
+
+document.querySelector('.tag_text_box').addEventListener('click', function() {
+    const category = '{{ feed.category }}'; // 해당 피드의 카테고리 값
+    const url = `categoryview?category=${category}`; // 쿼리 매개변수를 추가한 URL
+
+    window.location.href = url; // URL로 이동
+});
+
+
 </script>
 
 </body>

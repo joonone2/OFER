@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from django.views.generic import TemplateView
+
 
 
 class Sub(APIView):
@@ -12,3 +14,5 @@ class Sub(APIView):
         return render(request,"OFER/main.html")
 
 
+class MainView(TemplateView):
+    template_name = 'OFER/main.html'  # 기본 페이지 템플릿 파일의 이름

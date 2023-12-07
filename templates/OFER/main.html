@@ -17,9 +17,12 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!--axios cdn -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="style.css">
+    <!-- Google Icon -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+            rel="stylesheet">
 
 
     <!-- <link rel="stylesheet" href="../../css/social/profile.css"> -->
@@ -1575,6 +1578,61 @@ input {
             height: 100%;
             object-fit: cover;
         }
+
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.grid-item {
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+/* 필요에 따라 다양한 스타일을 추가하세요 */
+
+.social_feeds {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    /* 다른 스타일링 */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* 다른 스타일링 */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* 요소 사이의 간격 조정 */
+}
+
+.feed_card {
+    flex: 0 0 calc(25% - 20px); /* 4개의 요소로 나눠줌 */
+    margin: 10px; /* 요소 사이의 간격 조정 */
+    /* 다른 스타일링 */
+}
+
+/* 나머지 스타일링은 필요에 따라 추가할 수 있습니다. */
+
+.keyword_bind {
+    text-align: center; /* 키워드들 가운데 정렬 */
+}
+
+.trend_keyword {
+    margin: 10px;
+    cursor: pointer;
+    font-size: 15px; /* 원하는 글자 크기로 설정 */
+    font-weight: bold; /* 굵은 글꼴로 설정 */
+    /* 다른 스타일링 */
+}
+
+
 </style>
 
 <body>
@@ -1594,12 +1652,7 @@ input {
                                 <div class="header_top">
                                     <div class="top_inner">
                                         <ul class="top_list">
-                                            <li class="top_item">
-                                                <a href="/notice" class="top_link"> 고객센터 </a>
-                                            </li>
-                                            <li class="top_item">
-                                                <a href="/my/wish" class="top_link"> 관심상품 </a>
-                                            </li>
+
                                             <li class="top_item">
                                                 <a href="/my" class="top_link"> 마이페이지 </a>
                                             </li>
@@ -1613,8 +1666,9 @@ input {
                                     </div>
                                 </div>
                                 <div class="header_main">
-                                    <div class="main_inner" style="font-family: 'Nanum Gothic';font-size: 35px; font-weight: bold">
+                                    <div class="main_inner" style="font-family: 'Nanum Gothic';font-size: 35px; font-weight: bold; cursor: pointer;" onclick="reloadPage()">
                                         OFER
+                                    </div>
                                         <div class="gnb_area">
                                             <nav class="gnb">
                                                 <ul class="gnb_list">
@@ -1705,101 +1759,44 @@ input {
                                     <a href="#" class="tab_item"> 팔로잉 </a>
                                     <a href="#" class="tab_item"> 내스타일 </a>
                                     -->
-                                    <div id="button_feed_list" style="cursor: pointer;" class="tab_item">인기</div>
-                                    <div id="button_feed_like_list" style="cursor: pointer;" class="tab_item">최신</div>
-                                    <div id="button_feed_bookmark_list" style="cursor: pointer;" class="tab_item">내스타일</div>
+                                    <div id="button_feed_popular" style="cursor: pointer; border-radius: 10px;" class="tab_item">인기</div>
+                                    <div id="button_feed_new" style="cursor: pointer; border-radius: 10px;" class="tab_item">최신</div>
+                                    <div id="button_feed_liked" style="cursor: pointer; border-radius: 10px;" class="tab_item">관심</div>
                                 </div>
                             </div>
                         </div>
-                    </header>
+
                 </div>
                 <!--  헤더 끝-->
 
                 <!-- 컨테이너 -->
                 <div class="container social lg">
                     <div class="content">
-                        <!-- 해시태그 시작
+
                         <div class="keyword_bind">
-                            <a href="#" class="trend_keyword"> # 셋업코디 </a>
-                            <a href="#" class="trend_keyword"> # 베이프 </a>
-                            <a href="#" class="trend_keyword"> # 오뭐신 </a>
-                            <a href="#" class="trend_keyword"> # 클락스 </a>
-                            <a href="#" class="trend_keyword"> # 레이어드룩 </a>
-                            <a href="#" class="trend_keyword"> # 나투시 </a>
-                            <a href="#" class="trend_keyword"> # 스트릿 </a>
-                            <a href="#" class="trend_keyword"> # 미리메리챌린지 </a>
+                            <br>
+                            <br>
+                            <a href="#" class="trend_keyword"> #캐주얼 </a>
+                            <a href="#" class="trend_keyword"> #아메카지 </a>
+                            <a href="#" class="trend_keyword"> #클래식 </a>
+                            <a href="#" class="trend_keyword"> #스트릿 </a>
+                            <a href="#" class="trend_keyword"> #미니멀 </a>
+                            <a href="#" class="trend_keyword"> #빈티지</a>
                         </div>
-                        -->
-                        <!-- 해시태그 끝 -->
 
-                        <!-- 피드 시작 -->
-
-
-
-
-<!--
-                        <div class="social_feeds">
-                            <div transition-duration="0" item-selector=".item" gutter=".gutter_item"
-                                horizontal-order="true" class="masonry_posts"
-                                style="position: relative; height: 4956px;">
-                                <div class="gutter_item"></div>
--->
-
-
-                                <!-- 게시물 시작 -->
-<!--
-                                <div class="feed_card item vertical" style="position: absolute; left: {{ a }}px; top: {{ b }}px;">
-                                    <a href="#">{{ a }}
-                                        <div class="card_box">
-                                            <div class="social_img_box vertical">
-                                                <picture class="picture social_img">
-                                                    <source type="image/webp"
-                                                        srcset="{{ feed.image }}">
-                                                    <source
-                                                        srcset="https://kream-phinf.pstatic.net/MjAyMjEyMjhfMTc4/MDAxNjcyMTk0MjY2Njk3.ID4oXLjphKCSG17vPHX7Ku_DC93mQrR7M2-c9TgWXvwg.75cNsQCfe4XQZ9LwxxrRRQce7sJbNxiiYTGdKSesTxIg.JPEG/p_bee3aabc37b04e80875a1a1f558b8421.jpeg?type=m">
-                                                    <img alt="소셜이미지"
-                                                        src="{{ feed.image }}"
-                                                        loading="auto" class="image">
-                                                </picture>
-                                            </div>
-
-                                            <div class="card_detail">
-                                                <div class="user_box">
-                                                    <picture class="picture img_profile">
-                                                        <source type="image/webp"
-                                                            srcset="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s_webp">
-                                                        <source
-                                                            srcset="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s">
-                                                        <img alt="사용자 프로필 이미지"
-                                                            src="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s"
-                                                            loading="auto" class="image">
-                                                    </picture>
-                                                    <p class="user_name">yeni_day</p><span aria-label="좋아요"
-                                                        role="button" class="btn like">
-                                                        <img src="https://cdn-icons-png.flaticon.com/128/4225/4225972.png" alt="좋아요 이미지"
-                                                            class="icon sprite-icons social-like-gray-sm">
-                                                        <span class="like_count">128</span></span>
-                                                </div>
-                                                <p class="text_box">삿포로</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-  --><div class="social_feeds">
+                    <div class="social_feeds">
     <div transition-duration="0" item-selector=".item" gutter=".gutter_item"
         horizontal-order="true" class="masonry_posts"
-        style="position: relative; height: 4956px;">
+        style="position: relative;">
         <div class="gutter_item"></div>
 
 
-        <div class="container">
-            <div class="row">
-                {% for feed in feeds %}
 
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <div class="feed_card item vertical" style="position: absolute; left: 0px; top: 0px;"  onclick="styleView('{{ feed.id }}')">
-                            <a href="#">
+        <div class="container">
+            <div class="row feed_popular">
+                {% for feed in pop_feeds %}
+                        <div class="feed_card item vertical grid-item" onclick="styleView('{{ feed.id }}')" style="border: white">
+                            <a href="#"> <!-- style="position: absolute;" -->
                                 <div class="card_box">
                                     <div class="social_img_box vertical">
                                                 <picture class="picture social_img">
@@ -1814,56 +1811,188 @@ input {
                                             <div class="card_detail">
                                                 <div class="user_box">
                                                     <picture class="picture img_profile">
-                                                        <source type="image/webp"
-                                                            srcset="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s_webp">
-                                                        <source
-                                                            srcset="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s">
+
                                                         <img alt="사용자 프로필 이미지"
-                                                            src="https://kream-phinf.pstatic.net/MjAyMjExMTJfNSAg/MDAxNjY4MTc4OTg2ODMz.BNaaOXTTh0anVngGqQBR3e2i0O-PklBR9zSXOTGuuzYg.DT3Btnyhy3npuiZd3GnFfFE9_XMyXUAEi4g6MUuuPSIg.JPEG/p_36e41b8f822542428ec96e83ac46c44d.jpeg?type=s"
+                                                            src="{% get_media_prefix %}{{ feed.profile_image }}"
                                                             loading="auto" class="image">
                                                     </picture>
-                                                    <p class="user_name">yeni_day</p><span aria-label="좋아요"
-                                                        role="button" class="btn like">
-                                                        <img src="https://cdn-icons-png.flaticon.com/128/4225/4225972.png" alt="좋아요 이미지"
-                                                            class="icon sprite-icons social-like-gray-sm">
-                                                        <span class="like_count">128</span></span>
+                                                    <p class="user_name">{{ feed.nickname }}</p>
+                                            <span id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}"
+                                                class="favorite material-icons-outlined"
+                                                    style="color: black;cursor: pointer; font-size: 18px">{% if feed.is_liked %}
+                                            favorite{% else %}favorite_border{% endif %}</span>
+
+                                                        <span class="like_count">{{ feed.like_count }}</span>
                                                 </div>
                                                 <p class="text_box">{{ feed.content }}</p>
                                             </div>
                                 </div>
                             </a>
                         </div>
-                    </div>
+
                 {% endfor %}
             </div>
         </div>
+
+        <div class="container">
+            <div class="row feed_new">
+                {% for feed in feeds %}
+                        <div class="feed_card item vertical grid-item" onclick="styleView('{{ feed.id }}')" style="border: white">
+                            <a href="#"> <!-- style="position: absolute;" -->
+                                <div class="card_box">
+                                    <div class="social_img_box vertical">
+                                                <picture class="picture social_img">
+
+                                                    <img alt="소셜이미지"
+                                                        src="{% get_media_prefix %}{{ feed.image }}"
+                                                        loading="auto" class="imagess"
+                                                        >
+                                                </picture>
+                                            </div>
+
+                                            <div class="card_detail">
+                                                <div class="user_box">
+                                                    <picture class="picture img_profile">
+
+                                                        <img alt="사용자 프로필 이미지"
+                                                            src="{% get_media_prefix %}{{ feed.profile_image }}"
+                                                            loading="auto" class="image">
+                                                    </picture>
+                                                    <p class="user_name">{{ feed.nickname }}</p>
+                                            <span id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}"
+                                                class="favorite material-icons-outlined"
+                                                    style="color: black;cursor: pointer; font-size: 18px">{% if feed.is_liked %}
+                                            favorite{% else %}favorite_border{% endif %}</span>
+
+                                                        <span class="like_count">{{ feed.like_count }}</span>
+                                                </div>
+                                                <p class="text_box">{{ feed.content }}</p>
+                                            </div>
+                                </div>
+                            </a>
+                        </div>
+
+                {% endfor %}
+            </div>
+        </div>
+
+    <div class="container">
+            <div class="row feed_liked">
+                {% for feed in pop_feeds %}
+                    {% if feed.is_liked %}
+                        <div class="feed_card item vertical grid-item" onclick="styleView('{{ feed.id }}')" style="border: white">
+                            <a href="#"> <!-- style="position: absolute;" -->
+                                <div class="card_box">
+                                    <div class="social_img_box vertical">
+                                                <picture class="picture social_img">
+
+                                                    <img alt="소셜이미지"
+                                                        src="{% get_media_prefix %}{{ feed.image }}"
+                                                        loading="auto" class="imagess"
+                                                        >
+                                                </picture>
+                                            </div>
+
+                                            <div class="card_detail">
+                                                <div class="user_box">
+                                                    <picture class="picture img_profile">
+
+                                                        <img alt="사용자 프로필 이미지"
+                                                            src="{% get_media_prefix %}{{ feed.profile_image }}"
+                                                            loading="auto" class="image">
+                                                    </picture>
+                                                    <p class="user_name">{{ feed.nickname }}</p>
+                                            <span id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}"
+                                                class="favorite material-icons-outlined"
+                                                    style="color: black;cursor: pointer; font-size: 18px">{% if feed.is_liked %}
+                                            favorite{% else %}favorite_border{% endif %}</span>
+
+                                                        <span class="like_count">{{ feed.like_count }}</span>
+                                                </div>
+                                                <p class="text_box">{{ feed.content }}</p>
+                                            </div>
+                                </div>
+                            </a>
+                        </div>
+                {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+
+
     </div>
 </div>
 
 
 
-                                <!-- 게시물 끝 -->
-<!-- 게시물 시작 -->
-
-
-                            </div>
-
                         </div>
 
                         <!-- 피드 끝 -->
                     </div>
-                </div>
+
                 <!-- 컨테이너 끝 -->
                 <!-- 푸터 시작 -->
 
                 <!-- 푸터 끝 -->
-            </div>
+                        </div></header></div></div></div></div></body></html>
 
 
     <!-- <script src="../../js/style/profile.js"></script> -->
-</body>
+
 
 <script>
+    $(document).ready(function() {
+    // 페이지 로드 시 인기 탭을 클릭한 상태로 변경
+
+    $("#button_feed_popular").click();
+});
+
+
+    $("#button_feed_popular").click(function () {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    $('.feed_popular').show();
+    $('.feed_new').hide();
+    $('.feed_liked').hide();
+
+    this.style.backgroundColor = 'black'; // 배경색을 검정색으로 변경
+    this.style.color = 'white'; // 글자색을 하얀색으로 변경
+    document.getElementById('button_feed_new').style.backgroundColor = 'transparent'; // "최신" 탭 배경색 초기화
+    document.getElementById('button_feed_new').style.color = 'black'; // "최신" 탭 글자색 초기화
+        document.getElementById('button_feed_liked').style.backgroundColor = 'transparent'; // "인기" 탭 배경색 초기화
+    document.getElementById('button_feed_liked').style.color = 'black'; // "인기" 탭 글자색 초기화
+});
+
+
+
+$("#button_feed_new").click(function () {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    $('.feed_new').show();
+    $('.feed_popular').hide();
+    $('.feed_liked').hide();
+
+    this.style.backgroundColor = 'black'; // 배경색을 검정색으로 변경
+    this.style.color = 'white'; // 글자색을 하얀색으로 변경
+    document.getElementById('button_feed_popular').style.backgroundColor = 'transparent'; // "인기" 탭 배경색 초기화
+    document.getElementById('button_feed_popular').style.color = 'black'; // "인기" 탭 글자색 초기화
+    document.getElementById('button_feed_liked').style.backgroundColor = 'transparent'; // "인기" 탭 배경색 초기화
+    document.getElementById('button_feed_liked').style.color = 'black'; // "인기" 탭 글자색 초기화
+});
+
+$("#button_feed_liked").click(function () {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    $('.feed_new').hide();
+    $('.feed_popular').hide();
+    $('.feed_liked').show();
+
+    this.style.backgroundColor = 'black'; // 배경색을 검정색으로 변경
+    this.style.color = 'white'; // 글자색을 하얀색으로 변경
+    document.getElementById('button_feed_popular').style.backgroundColor = 'transparent'; // "인기" 탭 배경색 초기화
+    document.getElementById('button_feed_popular').style.color = 'black'; // "인기" 탭 글자색 초기화
+    document.getElementById('button_feed_new').style.backgroundColor = 'transparent'; // "최신" 탭 배경색 초기화
+    document.getElementById('button_feed_new').style.color = 'black'; // "최신" 탭 글자색 초기화
+});
+
 
     function styleView(feed_id) {
 
@@ -1910,6 +2039,21 @@ input {
             location.href = '/login';
         }
     });
+
+    document.querySelectorAll('.trend_keyword').forEach(keyword => {
+    keyword.addEventListener('click', function(event) {
+        event.preventDefault(); // 기본 동작 방지
+
+        const clickedValue = this.textContent.trim().slice(1); // '#' 제외한 값 얻기
+        const newURL = `/content/categoryview?category=${clickedValue}`;
+        window.location.href = newURL;
+
+    });
+});
+
+   function reloadPage() {
+        location.reload();
+    }
 
 </script>
 

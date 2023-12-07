@@ -1,4 +1,5 @@
 import os
+from django.http import JsonResponse
 from uuid import uuid4
 
 from django.views import View
@@ -50,8 +51,55 @@ class Main(APIView):
                                   is_liked=is_liked,
                                   is_marked=is_marked
                                   ))
+        pop_feed_list = sorted(feed_list, key=lambda x: x['like_count'], reverse=True)
 
-        return render(request, "OFER/main.html", context=dict(feeds=feed_list, user=user, user_connect=user_connect))
+        return render(request, "OFER/main.html", context=dict(feeds=feed_list, user=user,
+                                                              user_connect=user_connect, pop_feeds = pop_feed_list))
+
+
+class CategoryView(APIView):
+    def get(self, request):
+        email = request.session.get('email', None) #현재 접속중인 사용자의 이메일 받아오기
+        category = request.GET.get('category')
+
+        #로그인 안되어있을시 login 화면으로 보내는 코드
+        if email is None:
+            return render(request,"user/login.html")
+        user = User.objects.filter(email=email).first() #DB에 있는 이메일과 비교
+        if user is None:
+            return render(request, "user/login.html")
+
+        user_connect = User.objects.filter(email=email).first()
+
+        feed_object_list = Feed.objects.all().order_by('-id')  # select  * from content_feed;
+        feed_list = []
+
+        for feed in feed_object_list:
+            user = User.objects.filter(email=feed.email).first()
+            reply_object_list = Reply.objects.filter(feed_id=feed.id)
+            reply_list = []
+            for reply in reply_object_list:
+                user = User.objects.filter(email=reply.email).first()
+                reply_list.append(dict(reply_content=reply.reply_content,
+                                       nickname=user.nickname))
+            like_count = Like.objects.filter(feed_id=feed.id, is_like=True).count()
+            is_liked = Like.objects.filter(feed_id=feed.id, email=email, is_like=True).exists()
+            is_marked = Bookmark.objects.filter(feed_id=feed.id, email=email, is_marked=True).exists()
+            feed_list.append(dict(id=feed.id,
+                                  image=feed.image,
+                                  content=feed.content,
+                                  like_count=like_count,
+                                  profile_image=user.profile_image,
+                                  nickname=user.nickname,
+                                  reply_list=reply_list,
+                                  is_liked=is_liked,
+                                  is_marked=is_marked,
+                                  category=feed.category
+                                  ))
+        pop_feed_list = sorted(feed_list, key=lambda x: x['like_count'], reverse=True)
+
+        return render(request, "content/category_view.html", context=dict(feeds=feed_list, user=user,
+                                                              user_connect=user_connect, pop_feeds = pop_feed_list, category=category))
 
 
 class UploadFeed(APIView):
@@ -75,8 +123,11 @@ class UploadFeed(APIView):
         asdf = uuid_name
         content123 = request.data.get('content')
         email = request.session.get('email', None)
+        category = request.data.get('category')
+        print("카테고리")
+        print(category)
 
-        Feed.objects.create(image=asdf, content=content123, email=email)
+        Feed.objects.create(image=asdf, content=content123, email=email, category=category)
 
         return Response(status=200)
 
@@ -163,10 +214,10 @@ class ToggleLike(APIView):
 class ToggleBookmark(APIView):
     def post(self, request):
         feed_id = request.data.get('feed_id', None)
-        print('무야호')
-        print(feed_id)
+        #print('무야호')
+        #print(feed_id)
         bookmark_text = request.data.get('bookmark_text', True)
-        print(bookmark_text)
+        #print(bookmark_text)
         if bookmark_text == 'bookmark_border':
             is_marked = True
         else:
@@ -183,6 +234,55 @@ class ToggleBookmark(APIView):
             Bookmark.objects.create(feed_id=feed_id, is_marked=is_marked, email=email)
 
         return Response(status=200)
+
+class DeleteFeed(APIView):
+    def post(self, request):
+        feed_id = request.data.get('feed_id', None)
+        delete_text = request.data.get('delete_text', None)
+        #print('무야호')
+        #print(feed_id)
+        de = request.data.get('bookmark_text', True)
+        #print(bookmark_text)
+        # if delete_text == 'bookmark_border':
+        #     is_marked = True
+        # else:
+        #     is_marked = False
+        email = request.session.get('email', None) #접속해있는 사람 email
+
+
+       # bookmark = Bookmark.objects.filter(feed_id=feed_id, email=email).first()
+        try:
+            feed = Feed.objects.get(id=feed_id)
+            feed.delete()
+            return JsonResponse({'message': '피드가 삭제되었습니다.'}, status=200)
+        except Feed.DoesNotExist:
+            return JsonResponse({'message': '해당 피드를 찾을 수 없습니다.'}, status=404)
+
+
+
+
+class DeleteReply(APIView):
+    def post(self, request):
+        feed_id = request.data.get('feed_id', None)
+
+        delete_id = request.data.get('delete_id', None)
+        print("삭제피드")
+        print(feed_id)
+        print("삭제댓글")
+        print(delete_id)
+
+        email = request.session.get('email', None) #접속해있는 사람 email
+
+
+       # bookmark = Bookmark.objects.filter(feed_id=feed_id, email=email).first()
+        try:
+
+            reply = Reply.objects.get(id=delete_id)
+            reply.delete()
+            return JsonResponse({'message': '피드가 삭제되었습니다.'}, status=200)
+        except Feed.DoesNotExist:
+            return JsonResponse({'message': '해당 피드를 찾을 수 없습니다.'}, status=404)
+
 
 
 class StyleView(APIView):
@@ -211,7 +311,7 @@ class StyleView(APIView):
             print(reply.email)
             print(user)
             reply_list.append(dict(reply_content=reply.reply_content,
-                                   nickname=user.nickname, user_image = user.profile_image))
+                                   nickname=user.nickname, user_image = user.profile_image, email = user.email, id = reply.id))
         like_count = Like.objects.filter(feed_id=feed_object.id, is_like=True).count()
         is_liked = Like.objects.filter(feed_id=feed_object.id, email=email, is_like=True).exists()
         is_marked = Bookmark.objects.filter(feed_id=feed_object.id, email=email, is_marked=True).exists()
@@ -226,7 +326,10 @@ class StyleView(APIView):
             'reply_list': reply_list,
             'is_liked': is_liked,
             'is_marked': is_marked,
-            'date_time' : feed_object.date_time
+            'date_time' : feed_object.date_time,
+            'email' : feed_object.email,
+            'category' : feed_object.category
+
         }
 
         #user = User.objects.filter(email=email).first()  # 로그인 한 사용자의 정보(이게 굳이 필요가 있는지는 모르겠다.)
@@ -236,5 +339,5 @@ class StyleView(APIView):
 
         # 해당 피드가 없으면 메인페이지로 돌아가기
         return render(request, 'content/style_view.html', context=dict(
-                                                              feed=feed, user=user_content, user_content=user_content))
+                                                              feed=feed, user=user_content, user_content=user_content, email=email))
 

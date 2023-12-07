@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="users.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
 </head>
 <style>
     @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
@@ -1921,6 +1923,32 @@ a:link, a:active, a:focus, a:visited {
     color: black;
     text-decoration: none;
 }
+
+.select {
+    padding: 15px 10px;
+}
+.select input[type=radio]{
+    display: none;
+}
+.select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 24px;
+    width: 90px;
+    border: 1px solid #333;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+}
+.select input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+.select input[type=radio]:checked+label{
+    background-color: #333;
+    color: #fff;
+}
 </style>
 
 <body>
@@ -2071,13 +2099,31 @@ a:link, a:active, a:focus, a:visited {
 
             <!-- 이 부분도 원래 상품 태그 버튼에서 셀렉된 태그를 담는 란인 것 같아서 그냥 텍스트란으로 바꿨습미다..-->
           <div class="input_box">
-            <h3 class="input_title ess" style="margin-bottom: 10px;">해시태그 추가하기</h3>
+            <h3 class="input_title ess" style="margin-bottom: 10px;">스타일</h3>
             <div class="input_item add_tag">
               <!-- 선택된 태그 들어올 자리 시작 -->
               <ul id="selected_product_list">
 
-              </ul><textarea resize="none" rows="1" oninput="resize(this)" name="content" id="content_input"
-                class="input_txt in_essValue" cols="30" rows="1" placeholder="원하는 해시태그를 (#)입력 후 작성하세요!"></textarea>
+              </ul>
+                <div class="select">
+                  <input type="radio" id="select" name="shop" value="캐주얼">
+                  <label for="select">캐주얼</label>
+
+                  <input type="radio" id="select2" name="shop" value="클래식">
+                  <label for="select2">클래식</label>
+
+                  <input type="radio" id="select3" name="shop" value="고프코어">
+                  <label for="select3">고프코어</label>
+
+                  <input type="radio" id="select4" name="shop" value="아메카지">
+                  <label for="select4">아메카지</label>
+
+                  <input type="radio" id="select5" name="shop" value="미니멀">
+                  <label for="select5">미니멀</label>
+                </div>
+
+
+
               <!-- 선택된 태그 들어올 자리 끝 -->
             </div>
 
@@ -2218,17 +2264,38 @@ a:link, a:active, a:focus, a:visited {
 
 
     $('#feed_create_button').click(function () {
-        alert("공유가 완료되었습니다.");
+
+
+        //alert("공유가 완료되었습니다.");
 
         let file = files[0];
         let image = files[0].name;
         let content = $('#input_feed_content').val();
+        var radios = document.getElementsByName('shop');
+
+          // 선택된 값을 저장할 변수
+          var category;
+
+          // 라디오 버튼 요소들을 순회하며 선택된 값을 찾기
+          for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+              category = radios[i].value;
+              break; // 선택된 값이 있으면 반복문 종료
+            }
+          }
+        alert("end");
+        alert(category);
+        console.log("카테고리");
+        console.log(category);
+
 
         let fd = new FormData();
 
         fd.append('file', file);
         fd.append('image', image);
         fd.append('content', content);
+        fd.append('category', category);
+
 
         $.ajax({
             url: "/content/upload",
@@ -2244,7 +2311,7 @@ a:link, a:active, a:focus, a:visited {
             },
             complete: function () {
                 console.log("완료");
-                location.replace("/main");
+                //location.replace("/main");
             }
         });
     });
@@ -2298,10 +2365,23 @@ document.getElementById('input_feed_content').addEventListener('input', function
 document.getElementById('feed_create_button').addEventListener('click', function() {
     var file = document.getElementById('imgUpload').files[0];
     var content = document.getElementById('input_feed_content').value;
+    var radios = document.getElementsByName('shop');
+
+          // 선택된 값을 저장할 변수
+          var category;
+
+          // 라디오 버튼 요소들을 순회하며 선택된 값을 찾기
+          for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+              category = radios[i].value;
+              break; // 선택된 값이 있으면 반복문 종료
+            }
+          }
 
     var fd = new FormData();
     fd.append('file', file);
     fd.append('content', content);
+    fd.append('category', category);
 
     $.ajax({
         url: '/content/upload', // 업로드 API 엔드포인트 URL
