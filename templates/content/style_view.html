@@ -327,6 +327,7 @@ img#previewImg{cursor:pointer;max-height:200px; max-width:100%;display:block;}
 .social_img_box .vertical {
     padding-top: 134.77%;
     margin-top: -800px;
+    display: inline-block;
 }
 .feed_card, .social_img_box {
     position: relative;
@@ -1260,15 +1261,20 @@ footer #sns_and_button #footer_button{
                                             </div>
 
                                     <a href="#">
-
-                                        <div  class="social_img_box vertical">
+                                        <div class="social_img_box vertical">
                                             <img
-                                                alt="이미지" oncontextmenu="return false" ondragstart="return false"
-                                                onselectstart="return false"
-                                                src="{% get_media_prefix %}{{ feed.image }}"
-                                                loading="lazy" class="social_img" width="800" height="3
-                                                00">
+                                                    alt="이미지"
+                                                    oncontextmenu="return false"
+                                                    ondragstart="return false"
+                                                    onselectstart="return false"
+                                                    src="{% get_media_prefix %}{{ feed.image }}"
+                                                    loading="lazy"
+                                                    class="social_img"
+                                                    style="border-radius: 7%; margin-top: 17%"
+                                                >
                                         </div>
+
+
                                     </a>
                                     <div  class="card_detail"><a href="#">
 

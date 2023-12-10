@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>STYLE | ShoeKream</title>
-    <link data-n-head="ssr" rel="icon" type="image/x-icon" href="https://kream.co.kr/favicon.ico">
+    <title>OFER</title>
+{#    <link data-n-head="ssr" rel="icon" type="image/x-icon" href="https://kream.co.kr/favicon.ico">#}
 
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -1665,92 +1665,31 @@ input {
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="header_main">
-                                    <div class="main_inner" style="font-family: 'Nanum Gothic';font-size: 35px; font-weight: bold; cursor: pointer;" onclick="reloadPage()">
+                                <div class="header_main" style="display: flex; align-items: center;">
+                                    <div class="main_inner" style="font-family: 'Nanum Gothic'; font-size: 35px; font-weight: bold; cursor: pointer;" onclick="reloadPage()">
                                         OFER
                                     </div>
-                                        <div class="gnb_area">
-                                            <nav class="gnb">
-                                                <ul class="gnb_list">
-                                                    <li class="gnb_item gnb_on">
-                                                        <a href="/main" class="gnb_link"> STYLE </a>
-                                                    </li>
-
-                                                    <li class="gnb_item">
-                                                        <a href="/content/upload" class="gnb_link" > 글쓰기 </a>
-
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                            <div class="dropdown">
-                                                <a href="#" role="button" id="dropdownMenuLink"
-                                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <div class="up_box" style="width: 25px; height: 25px">
-
-                                                        <img class="up_profile" src="{% get_media_prefix %}{{ user_connect.profile_image }}" style="border-radius: 50%" onclick="location.href='/content/profile'">
-                                                    </div>
-
-                                        <div style="display: none;">
-                                            <div class="search_area" value="">
-                                                <div class="search">
-                                                    <img src="../../img/search.png">
-                                                    <input type="text" placeholder="" title="검색창"
-                                                        class="input_search show_placeholder_on_focus">
-                                                    <button class="btn_search_delete" style="display: none;">
-                                                    </button>
-                                                </div>
+                                    <div class="gnb_area" style="margin-left: auto;"> <!-- 우측 정렬을 위해 margin-left: auto; -->
+                                        <nav class="gnb">
+                                            <ul class="gnb_list" style="display: flex;"> <!-- Flex로 내부 요소 정렬 -->
+                                                <li class="gnb_item gnb_on">
+                                                    <a href="/main" class="gnb_link"> STYLE </a>
+                                                </li>
+                                                <li class="gnb_item">
+                                                    <a href="/content/upload" class="gnb_link"> 글쓰기 </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <div class="up_box" style="width: 25px; height: 25px;">
+                                                <img class="up_profile" src="{% get_media_prefix %}{{ user_connect.profile_image }}" style="border-radius: 50%;" onclick="location.href='/content/profile'">
                                             </div>
-                                        </div>
-                                        <div class="nav_btn_box">
-                                            <button type="button" aria-label="검색" class="btn_search">
-                                            </button>
-                                            <button type="button" aria-label="메뉴" class="btn_menu">
-                                            </button>
-                                        </div>
-                                        <div style="display: none;">
-                                            <div class="navigation_wrap">
-                                                <div class="navigation">
-                                                    <div class="navigation_inner">
-                                                        <ul class="nav_list">
-                                                            <li class="nav_item">
-                                                                <a href="#" class="nav_link"> STYLE </a>
-                                                            </li>
-                                                            <li class="nav_item">
-                                                                <a href="#" class="nav_link"> SHOP </a>
-                                                            </li>
-                                                            <li class="nav_item">
-                                                                <a href="#" class="nav_link"> 자주 묻는 질문 </a>
-                                                            </li>
-                                                            <li class="nav_item">
-                                                                <a href="#" class="nav_link"> 공지사항 </a>
-                                                            </li>
-                                                            <li class="nav_item" style="display: none;">
-                                                                <a href="#" class="nav_link"> 로그인 </a>
-                                                            </li>
-                                                            <li class="nav_item">
-                                                                <a href="#" class="nav_link"> 마이 페이지 </a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="nav_logout">
-                                                            <button class="btn_logout">로그아웃</button>
-                                                            <p class="text_mail"></p>
-                                                        </div>
-                                                        <div class="nav_download">
-                                                            <p class="download_txt">KREAM 앱 설치 후 사용해 보세요!</p>
-                                                            <div class="btn_appdown">
-                                                                <a href="#" class="btn outline medium"> 앱 다운로드 </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <button type="button" aria-label="닫기" class="btn_nav_close">
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!---->
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
+
                             <div class="social_header">
                                 <div class="style_tab_list">
                                     <!--

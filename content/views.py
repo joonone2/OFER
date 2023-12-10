@@ -154,6 +154,8 @@ class Profile(APIView):
                                                                         bookmark_feed_list=bookmark_feed_list,
                                                                     user=user))
 
+
+
 class UploadProfile(APIView):
     def post(self, request):
 
