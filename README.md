@@ -1,7 +1,5 @@
 <div align="center">
-<a href="https://teamby.team/">
-<img width="150px" src="https://github.com/joonone2/OFER/assets/129241680/6f87a5bb-831a-497c-aa1a-9d764fab72c9" alt="logo"/>
-</a>
+
 
 
 
